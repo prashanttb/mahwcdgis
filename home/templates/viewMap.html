@@ -1,0 +1,764 @@
+{% extends 'base_map_1.html' %}
+{% load static%} {% block content %}
+<style>
+    table,
+    th,
+    td {
+        border-bottom: 1px solid #ddd;
+        border-collapse: collapse;
+        padding: 2px 3px;
+        text-align: center;
+    }
+    
+    th {
+        font-weight: bold;
+    }
+    
+    tr:hover {
+        background-color: #c9dbe6;
+    }
+    
+    #checkboxes {
+        display: none;
+        /* border: 1px #dadada solid; */
+    }
+    
+    .slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 25px;
+        background: #D3D3D3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+    
+    .slider:hover {
+        opacity: 1;
+    }
+    
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: #FF0000;
+        cursor: pointer;
+    }
+    
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        background: #FF0000;
+        cursor: pointer;
+    }
+    
+    .sliderticks {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+    
+    .sliderticks p {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        width: 1px;
+        background: #D3D3D3;
+        height: 10px;
+        line-height: 40px;
+        margin: 0 0 20px 0;
+    }
+    
+    input[type="range"]::-moz-range-track {
+        padding: 0 10px;
+        background: repeating-linear-gradient(to right, #ccc, #ccc 10%, #000 10%, #000 11%, #ccc 11%, #ccc 20%);
+    }
+    
+    #checkboxes3 label {
+        display: block;
+        text-align: left;
+        margin: 10px;
+    }
+    
+    #checkboxes3 {
+        display: none;
+        /* border: 1px #dadada solid; */
+    }
+    
+    #checkboxes label {
+        display: block;
+        text-align: left;
+        margin: 10px;
+    }
+    /* #checkboxes label:hover {
+  background-color: #1e90ff;
+} */
+    
+    #checkboxes2 label {
+        display: block;
+        text-align: left;
+        margin: 10px;
+    }
+    
+    #checkboxes2 {
+        display: none;
+        /* border: 1px #dadada solid; */
+    }
+    
+    .btn {
+        margin: 10px;
+    }
+    
+    .border {
+        padding: 6px 8px;
+        border-style: groove;
+        border-radius: 5px;
+        margin: 20px;
+    }
+    
+    .info {
+        padding: 6px 8px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+    
+    .info h4 {
+        margin: 0 0 5px;
+        color: #777;
+    }
+    
+    .table {
+        border-collapse: collapse;
+        padding: 50px;
+        font-weight: bold;
+        /* background:rgba(191, 149, 233, 0.473); */
+    }
+    /* css to customize Leaflet default styles  */
+    
+    .leaflet-popup-content-wrapper {
+        background: rgba(0, 0, 0, 0.9);
+        color: #ffffff;
+    }
+    
+    .leaflet-popup-content {
+        font-weight: bold;
+    }
+    
+    h6 {
+        color: blue;
+    }
+    
+    .select {
+        background-color: rgb(116, 109, 109);
+        width: 40%;
+        margin-left: 100px;
+        ;
+        color: white;
+    }
+    
+    .select.highlight {
+        background: rgb(0, 0, 0);
+        color: white;
+    }
+    
+    .circle {
+        background-color: red;
+        border-radius: 50%;
+    }
+    
+    .table-legend {
+        border-collapse: collapse;
+        padding: 2px 3px;
+        width: 100%;
+        font-size: small;
+        /* font-weight: bold; */
+        background: #fff;
+    }
+    
+    .info {
+        padding: 6px 8px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        background: white;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+    
+    .info h4 {
+        margin: 0 0 5px;
+        color: #777;
+    }
+    
+    .legend {
+        line-height: 18px;
+        color: #555;
+    }
+    
+    .legend i {
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin-right: 8px;
+        opacity: 0.7;
+    }
+</style>
+
+<div id="side-bar" style="background-color: rgba(255, 255, 255);">
+    <!-- side-bar container -->
+
+
+    <div class="mobileShow">
+
+        <div style="text-align: center">
+            <button style="display: inline-block ;position: relative; background: #000; opacity: 0.60;" id="closebutton" name="closebutton" class="btn btn-secondary"><span class="fa fa-bars"></span></button>
+        </div>
+
+    </div>
+    <div class="border">
+     
+      <div class="tooltips" title="Please select the District">
+            <select class='form-control' id = "district">
+              <option value=""> Select District</option>
+             </select>
+      </div> 
+
+       <div class="tooltips" style="display:none;" title="Please select the Maharashtra's Blocks" id="block">
+        &nbsp;&nbsp;
+            <select class='form-control' id="block_s">
+              <option value=""> Select Taluka </option>
+             </select>
+      </div> 
+    </div>
+    <div>
+        <p>Please select type of Aganwadi</p>
+        <input type="radio" id="agan_main" name="agan_type" value="मुख्य" onchange="getFacility(this)">
+        <label for="html">मुख्य</label><br>
+        <input type="radio" id="agan_mini" name="agan_type" value="मिनी" onchange="getFacility(this)">
+        <label for="css">मिनी</label><br>
+    
+    </div>
+    <a href="" id="get-data"class="btn btn-primary">Get Data</a> 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script>
+    let isClicked = false
+    
+    var icon1 = L.icon({
+        iconUrl:  "{% static 'map/pinmargerblue.png' %}",
+        iconSize:     [30, 30], // size of the icon
+        //shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+        // shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+    });
+    
+    var awcLayer = L.layerGroup().addTo(mymap);
+    // awcLayer.addTo(mymap);
+    
+    </script>
+      <style>
+      .another-popup .leaflet-popup-content-wrapper .leaflet-popup-content{
+          width: 400px;
+          height:auto;
+        }
+    
+      </style>
+     
+{% for i in awc %}
+    <!-- console.log("awc rural infra id is "+'{{i.beat}}'); -->
+ 
+    <script>        
+        
+     var table1 = 
+          
+          `<table class="w3-table" id="popup" style="font-size:12px; align:left;" >
+            <tbody>
+          {% if i.picture %}
+            <tr>
+              <tr><img src={{ i.picture.url }} alt="No image uploaded" style="height:100px; width:170px; border:2px solid #555;"/>
+            </tr>
+            {% endif %}
+  
+            {% if i.project %}
+            <tr>
+                <th>ID name</th>
+                <th>{{ i.project}}</th>
+            </tr>
+            {% endif %}
+            {% if i.awc_code %}
+            <tr>
+                <th>AWC Code</th>
+                <th>{{ i.awc_code}}</th>
+            </tr>
+            {% endif %}
+            {% if i.beat %}
+            <tr>
+                <th>Beat</th>
+                <th>{{ i.beat}}</th>
+            </tr>
+            {% endif %}
+            {% if i.project %}
+            <tr>
+                <th>Aganwadi Type</th>
+                <th>{{ i.agan_type}}</th>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+     </br>`
+    var popupOptions =
+    {
+        'maxWidth': '500',
+        'className' : 'another-popup' // classname for another popup
+    }
+    var iconvar = icon1;
+    var marker = L.marker(["{{ i.latitude }}", "{{ i.longitude }}"], {icon:iconvar}).addTo(mymap).bindPopup(table1, popupOptions);
+    // var marker = L.marker(["{{ i.lat }}", "{{ i.lng }}"], {icon:iconvar}).addTo(mymap);
+    awcLayer.addLayer(marker);
+    marker.on('mouseover', function (e) {
+        this.openPopup(e.latlng);
+            });
+    marker.on('mouseout', function (e) {
+            this.openPopup(e.latlng);
+    });
+    marker.on('click', function (e) {
+            this.openPopup(e.latlng);
+    });
+    mymap.on ({
+        click: function() {
+            isClicked = false
+            },
+        popupclose: function () {
+            isClicked = false
+        }
+    })
+    </script>
+{% endfor %}
+
+    <script>
+        
+        $(document).ready(function() {
+            $("#block").show();
+            
+        //code for dependent dropdown start  
+        
+        function filterCSV(csv, key, value) 
+        {
+            var result = [];
+            var unique = [];
+
+            csv.forEach(function(val, idx, arr) {
+
+                if (val[key] == value) {
+                    //console.log(val.pincode);
+                    if (!unique[val.Districtname]) {
+                        result.push(val.Districtname)
+                        unique[val.Districtname] = 1;
+                    }
+                }
+            })
+            return result;
+        }
+        function filterCSV3(csv, key, value) {
+            var result = [];
+            var unique = [];
+
+            csv.forEach(function(val, idx, arr) {
+
+                if (val[key] == value) {
+
+                    if (!unique[val.block]) {
+                        //console.log(val.block);
+
+                        result.push(val.block)
+                        unique[val.block] = 1;
+                    }
+                }
+            })
+            return result;
+        }
+
+
+        d3.csv("{% static 'data/maha_dist_block.csv' %}", function(data) {
+            // $('#indstate').on("change", function(d) {
+                var val = d3.select(this).property("value");
+                var val ='Maharashtra'
+                $('#district').find('option').not(':first').remove();
+                var data_1 = filterCSV(data, 'statename', val);
+                
+                var select = document.getElementById("district");
+                for (var i = 0; i < data_1.length; i++) {
+                    var opt = data_1[i];
+                    var el = document.createElement("option");
+                    el.textContent = opt;
+                    el.value = opt;
+                    select.appendChild(el);
+                }
+                $('#districtd3').val("");
+            
+
+            $('#district').on("change", function(d) {
+                // var val1 = document.getElementById("indstate").value;
+                var val1 = 'Maharashtra';
+                console.log("District change called with state ="+val1);
+                var val2 = d3.select(this).property("value");
+                console.log("and distrcit ="+val2);
+                
+
+                $('#block_s').find('option').not(':first').remove();
+                var data_3 = filterCSV3(data, 'Districtname', val2);
+                var select = document.getElementById("block_s");
+                for (var i = 0; i < data_3.length; i++) {
+                    var opt = data_3[i];
+                    var el = document.createElement("option");
+                    el.textContent = opt;
+                    el.value = opt;
+                    select.appendChild(el);
+                }
+                $('#block_sd3').val("");
+
+
+            });
+
+            $('#block_s').on("change", function(d){
+                clear_layer();
+                clear_tallayer();
+                
+            });
+        });
+
+        document.getElementById("get-data").addEventListener("click", function(event){
+            let urlSplit = (window.location.href.split('/'));
+                let currentURL = `${urlSplit[0]}//${urlSplit[2]}/map/`
+                console.log(currentURL)
+                  event.preventDefault()
+                  if(document.getElementsByName('agan_type')[0].checked)
+                    var sel_agantype =document.getElementById('agan_main').value;
+                  else
+                    var sel_agantype =document.getElementById('agan_mini').value;
+
+                //   let sel_agantype = document.getElementsByName('agan_type')[0].;
+                  let sel_dist = document.getElementById('district').value;
+                  let sel_block = document.getElementById('block_s').value;
+                //   let selected_zone = document.getElementById('selected_zone_text').innerHTML;
+                //   if(date==="" || date1=="" || selected_zone===""){
+                //     console.log("fill the value")
+                //     document.getElementById("error_msg").innerHTML = "<p>Please select Zones , from and to date<p>"
+                //   } 
+                //   else{
+                    let url = `${sel_agantype}&${sel_dist}&${sel_block}`;
+                    let uri = encodeURIComponent(url);
+                    // window.location = currentURL + uri;
+                    console.log(uri);
+                //   }
+
+                });
+});
+
+        // *****************
+        
+        function style(feature) {
+            return {
+                fillColor: "#0000",
+                weight: 2,
+                opacity: 1,
+                color: 'black',
+                // dashArray: '3',
+                fillOpacity: 0.7
+            };
+        }
+        const domain = ['https://geoserver2.communitygis.net/', 'http://localhost/','https://geonode.communitygis.in/'];
+        var rootUrl = domain[1] + 'geoserver/geonode/ows';
+
+        var defaultParameters = {
+            service: 'WFS',
+            version: '1.0.0',
+            request: 'GetFeature',
+            outputFormat: 'json'
+        };
+
+        var info = L.control();
+        var attribute_table = L.control({
+            position: 'bottomright'
+        });
+        var LayerList = [];
+        var pointLayerList = [];
+        var newLayerList = [];
+        var faciLayerList = [];
+        var pinLayerList = [];
+        var distLayerList = [];                            
+        var talLayerList = [];
+        var wardLayerList = [];
+        var wmshealthLayerList = [];
+        var wms_legend;
+        let insti_content;
+        var searchControl;
+
+        $('#district').on('change', function() {
+            // if (area) {
+            //     mymap.removeLayer(area);
+            // }
+            clear_layer();
+            // clearpoint_layer();
+            clear_pinlayer();
+            let district = document.getElementById('district').value;
+
+            putWMSLayerdist();
+
+
+            //mymap.spin(true,{lines: 15, length: 1, width: 50, scale: 200,radius: 200, color: "grey"});
+        })
+
+        $('#block_s').on('change', function() {
+            //     if (area) {
+            //     mymap.removeLayer(area);
+            // }   
+                // clearpoint_layer();
+
+                let taluka = document.getElementById('block_s').value;
+
+                putWMSLayertaluka();
+
+
+                //mymap.spin(true,{lines: 15, length: 1, width: 50, scale: 200,radius: 200, color: "grey"});
+            })
+
+
+       
+
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                //click: zoomToFeature,
+            });
+
+            layer.bindTooltip("<div style = 'text-transform: capitalize'>" + feature.properties.village_na + "</div>", {
+                permanent: true,
+                direction: "center",
+                className: "my-labels"
+            });
+
+
+        }
+
+        function highlightFeature(e) {
+            var layer = e.target;
+
+            layer.setStyle({
+                weight: 5
+            });
+            info.update(layer.feature.properties);
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+            }
+        }
+
+        function styleset() {
+            //var layer = e.target;
+
+            layer.setStyle({
+                weight: 5
+            });
+            
+        }
+
+
+
+        function resetHighlight(e) {
+            geojson.resetStyle(e.target);
+            info.update();
+        }
+
+
+        function putWMSLayerdist() {
+            var dist = document.getElementById('district').value;
+            var state = 'Maharashtra';
+            var layers = 'geonode:MH_block0';
+            console.log(dist);
+            //var stLayerLatLong= listState[indstate];
+            if (dist == 'Mumbai City' || dist == 'Mumbai Suburban')
+                mymap.setView([19.0760, 72.8777], 11);
+            if (state == "Chhattisgarh") {
+                layers = 'geonode:all_india_districts_11june2020';
+            }
+            clear_distlayer();
+            clear_tallayer();
+            var wms_layer = L.tileLayer.wms('https://geonode.communitygis.in/geoserver/wms', {
+                layers: 'MH_block0',
+                format: 'image/png',
+                transparent: 'true',
+                // version: '1.3.0',
+                // cql_filter: `district='${dist}' AND state='${state}'`,
+                cql_filter: `District='${dist}'`,
+                style: ""
+            });
+            console.log(wms_layer);
+            //clear_layer();
+            //clearpoint_layer();
+            wms_layer.addTo(mymap);
+            setViewByDistrict('geonode:MH_block0', state,dist);
+
+            //mymap.setView([stLayerLatLong[1],stLayerLatLong[2]],8);
+            distLayerList.push(wms_layer);
+            addWMSLegend(layers);
+
+
+        }
+
+        function putWMSLayertaluka() {
+            // clear_tallayer();
+            var dist = document.getElementById('district').value;
+            var taluka = document.getElementById('block_s').value;
+
+            var wms_layer = L.tileLayer.wms('https://geonode.communitygis.in/geoserver/wms', {
+                layers: "geonode:MH_block0",
+                // cql_filter: "taluka_nam='" + taluka + "'",
+                cql_filter: `Block='${taluka}' AND District='${dist}'`,
+                format: 'image/png',
+                transparent: 'true',
+                style: "color:red",
+            });
+            // clear_layer();
+            clear_tallayer();
+            // console.log(wms_layer);
+            wms_layer.addTo(mymap);
+            setView('geonode:MH_block0', taluka);
+            
+            talLayerList.push(wms_layer);
+            // console.log(taluka);    
+
+
+        }
+
+       
+
+
+        function addWMSLegend(layer) {
+            lagendGraphic = "https://geonode.communitygis.in/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" + layer + "&LEGEND_OPTIONS=forceLabels:on";
+            wms_legend = L.wmsLegend(lagendGraphic);
+        }
+
+
+      
+        function setView(layerName, selectedBoundary) {
+            // if (area) {
+            //     mymap.removeLayer(area);
+            // }
+            let rootUrl = 'https://geonode.communitygis.in/geoserver/geonode/ows';
+
+            let options = {
+                service: 'WFS',
+                version: '1.0.0',
+                request: 'GetFeature',
+                outputFormat: 'application/json',
+                typeName: layerName,
+                cql_filter: `Block='${selectedBoundary}'`,
+                propertyName: 'the_geom'
+            };
+            let parameters = L.Util.extend(options);
+            layer_url = rootUrl + L.Util.getParamString(parameters)
+            fetch(layer_url).then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.log('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+                    response.json().then(function(geojsonData) {
+                        area = L.geoJson(geojsonData.features).addTo(mymap)
+                        lat = area.getBounds()._northEast.lat
+                        lng = area.getBounds()._northEast.lng
+                        mymap.setView([lat, lng - 0.4], 10)
+                    });
+                }).catch(function(err) {
+                console.log('Fetch Error :-S', err);
+            });
+        }
+
+        function setViewByDistrict(layerName, state,district) {
+            // if (area) {
+            //     mymap.removeLayer(area);
+            // }
+            alert(layerName+state+district);
+            var area = null
+            let rootUrl = 'https://geonode.communitygis.in/geoserver/geonode/ows';
+
+            let options = {
+                service: 'WFS',
+                version: '1.0.0',
+                request: 'GetFeature',
+                outputFormat: 'application/json',
+                typeName: layerName,
+                cql_filter: `District='${district}'`,
+                propertyName: 'the_geom'
+            };
+            let parameters = L.Util.extend(options);
+            layer_url = rootUrl + L.Util.getParamString(parameters)
+
+            fetch(layer_url).then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.log('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+                    response.json().then(function(geojsonData) {
+                        area = L.geoJson(geojsonData.features)
+                        lat = area.getBounds()._northEast.lat
+                        lng = area.getBounds()._northEast.lng
+                        mymap.setView([lat - .5, lng - 0.9], 9)
+                    });
+                }).catch(function(err) {
+                console.log('Fetch Error :-S', err);
+            });
+        }
+
+        function clear_layer() {
+            LayerList.forEach(layer => mymap.removeLayer(layer));
+
+        }
+
+        function clear_distlayer() {
+            distLayerList.forEach(layer => mymap.removeLayer(layer));
+
+        }
+
+        function clear_tallayer() {
+            console.log(talLayerList[0]);
+            console.log("In clear taluka layer")
+            talLayerList.forEach(layer => mymap.removeLayer(layer));
+
+        }
+
+        function clear_pinlayer() {
+            pinLayerList.forEach(layer => mymap.removeLayer(layer));
+        }
+        
+
+        function getFacility(obj) {
+            // mymap.setView([19.0110, 72.8512], 12);
+            let facility = obj.value;
+            let dist = document.getElementById('district').value;
+            let block = document.getElementById('block').value;
+            console.log("type is :"+facility);
+
+            console.log("district is :"+dist);
+            console.log("Block is : "+block);
+            // if ($(obj).is(":checked")) {
+            //     if(facility=="slumhh"){
+            //     putSlums("slumhh")
+    }
+
+    </script>
+    
+    
+  {% endblock %}
