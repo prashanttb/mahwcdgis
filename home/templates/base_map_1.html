@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{% static 'plugins/easy-button.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/mycss.css' %}">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static 'front.css' %}">
@@ -147,34 +148,48 @@ body {
 
   </style>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-info flex-column align-items-stretch">
-    <div class=" d-flex align-items-center" style="justify-content: space-evenly;">
-    <img src="{% static 'logowwcd.png' %}" style="height: 100px; width: 100px;overflow: hidden;">
-
-  <h3><div class ="text-white align-items-center">Maharashtra: Women & Child Development </h3>
-    <img class="header" src="{% static 'wcdlogo.png' %}" style="height: 100px; width: 130px;overflow: hidden;"></div>
-  </div>
-  <nav class ="nav-menu d-none d-lg-block">
-    <ul class="navbar-nav">
-        <li class="nav-item active">
-        <a href="{% url 'homepage' %}" class="nav-link text-white" >{% trans "Home" %}</a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'aboutus' %}" class="nav-link text-white">{% trans "About Us" %}</a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'map' %}" class="nav-link text-white">{% trans "Maps" %}</a>
-        </li>
+  <nav class="navbar navbar-expand-sm navbar-dark flex-column align-items-stretch">
         
-        <li>
-            <a href="{% url 'contact' %}" class="nav-link text-white">{% trans "Contact Us" %}</a>
-        </li>
-        </ul>
-        </nav>
+    <div class=" d-flex align-items-center" style="justify-content: space-evenly; ">
+        <!-- <img class="header-left" src="{% static 'images/IDFC_FIRST_Bank_logo.jpg' %}" style="height: 60px; width: 120px;overflow: hidden;"> -->
+        <img class="header-left" src="{% static 'logowwcd.png' %}" style="height: 100px; width: 100px;overflow: hidden;">
+        <img class="header" src="{% static 'WCD_Logo_PNG.png' %}" style="height: 100px; width: 130px;overflow: hidden;">
+        <img class="header" src="{% static 'mhgov.png' %}" style="height: 100px; width: 130px;overflow: hidden;">
+        <h3 style="color:white;">Maharashtra: Women & Child Development</h3>
+    </div>
+        
+    </div>
+    <div>
+        <!-- {{ Visitor_count }} -->
+    </div>
+    <nav class ="nav-menu d-none d-lg-block">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+            <a href="{% url 'homepage' %}" class="nav-link text-white" >{% trans "Home" %}</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'aboutus' %}" class="nav-link text-white">{% trans "About Us" %}</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'map' %}" class="nav-link text-white">{% trans "Maps" %}</a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="{% url 'contact' %}" class="nav-link text-white">{% trans "Contact Us" %}</a>
+            </li>
+<!--        -->
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+        
+        <!-- hitwebcounter Code START -->
+<!-- <a href="https://www.hitwebcounter.com" target="_blank">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7818435&style=0001&nbdigits=5&type=ip&initCount=0" title="Free Counter" Alt="web counter"   border="0" /></a>    -->
+<!-- <h5 class="nav-item text-white" style ="float: right;line-height: 2.0;"> &nbsp;&nbsp; {% trans "Visitors Count" %} : {{ Visitor_count }} </h5> -->
+    </ul>
+    
+    </nav>
+</nav>
+
+
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
