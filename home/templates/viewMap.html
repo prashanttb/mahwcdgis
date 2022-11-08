@@ -237,13 +237,36 @@
     </div>
     <div>
         <p>Please select type of Aganwadi</p>
-        <input type="radio" id="agan_main" name="agan_type" value="मुख्य" onchange="getFacility(this)">
+        <input type="radio" id="agan_main" class="agan_type" name="agan_type" value="मुख्य" onchange="getFacility(this)">
         <label for="html">मुख्य</label><br>
-        <input type="radio" id="agan_mini" name="agan_type" value="मिनी" onchange="getFacility(this)">
+        <input type="radio" id="agan_mini" class="agan_type" name="agan_type" value="मिनी" onchange="getFacility(this)">
         <label for="css">मिनी</label><br>
     
     </div>
+    <div class="border">
+        <div class="tooltips mb-3" title="Please select the Construction Type">
+            <select class='form-control' id = "construction">
+              <option value=""> Select AWC Construction Type</option>
+              <option value="अंगणवाडी इमारत नाही आहे">अंगणवाडी इमारत नाही आहे</option>
+              <option value="कच्चे">कच्चे</option>
+              <option value="पक्के">पक्के</option>
+              {% comment %} <option value="d">d</option> {% endcomment %}
+             </select>
+      </div> 
+      <div class="tooltips" title="Please select the Angan">
+        <select class='form-control' id = "sitangan">
+          <option value=""> Select Child Sit Angan</option>
+          <option value="01-01-2020">01-01-2020</option>
+          <option value="२१-४०">२१-४०</option>
+          <option value="४१-६०">४१-६०</option>
+          <option value="६०+">६०+</option>
+         </select>
+  </div> 
+    </div>
     <a href="" id="get-data"class="btn btn-primary">Get Data</a> 
+    <button onclick="plotData()" id="plot-data"class="btn btn-primary">Plot Data</button>
+    <button onclick="download()" id="down-data"class="btn btn-primary">Download Data</button>
+    <button onclick="clearAll()" id="clear-data"class="btn btn-primary">Clear All</button>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -457,7 +480,7 @@
                     let url = `${sel_agantype}&${sel_dist}&${sel_block}`;
                     let uri = encodeURIComponent(url);
                     // window.location = currentURL + uri;
-                    console.log(uri);
+                    console.log(url);
                 //   }
 
                 });
@@ -756,6 +779,57 @@
             // if ($(obj).is(":checked")) {
             //     if(facility=="slumhh"){
             //     putSlums("slumhh")
+    }
+
+
+    function plotData(){
+        var dist = document.getElementById("district").value;
+        var taluka = document.getElementById("block_s").value;
+        if(document.getElementsByClassName("agan_type").checked) var angtyp = document.querySelector(".agan_type:checked").value;
+        var constr = document.getElementById("construction").value;
+        var sitang = document.getElementById("sitangan").value;
+
+        //console.log(`${dist},${taluka},${angtyp},${constr},${sitang}`)
+        d3.csv("{% static 'data/rural_infra_awc_ac_englishConverted.csv' %}", function(data) {
+        
+            var points = [];
+            if(dist!=""){
+                data.forEach(e =>{
+                    //if(e.district == dist)
+                    console.log(data.latitude)
+                    var point = L.marker([parseFloat(data.latitude), parseFloat(data.longitude)])
+                    point.addTo(mymap);
+                    points.push(point)
+                })
+            }
+            if(taluka!=""){
+                data.forEach(e =>{
+                })
+            }
+            if(!document.getElementsByClassName("agan_type").checked){
+                data.forEach(e =>{
+                })
+            }
+            if(constr!=""){
+                data.forEach(e =>{
+                })
+            }
+            if(sitang!=""){
+                data.forEach(e =>{
+                })
+            }
+        })
+        
+        
+    }
+
+    function clearAll(){
+        document.getElementById("agan_main").checked=false;
+        document.getElementById("agan_mini").checked=false;
+        document.getElementById("district").selectedIndex = "";
+        document.getElementById("block_s").selectedIndex = "";
+        document.getElementById("construction").selectedIndex = "";
+        document.getElementById("sitangan").selectedIndex = "";
     }
 
     </script>
