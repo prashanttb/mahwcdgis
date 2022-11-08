@@ -104,16 +104,14 @@
   <body>
 <style>
 body {
-  position: fixed;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   margin: 0;
-  overflow: hidden;
 }
 .full-height {
-  height: 70%;
+  height: 100vh;
 }
 
 .header {
@@ -141,21 +139,20 @@ body {
     text-align: center;
 }
 
-
-.navbar{
-  border: red;
+img{
+  height:auto;
 }
 
-  </style>
 
-  <nav class="navbar navbar-expand-sm navbar-dark flex-column align-items-stretch">
+  </style>
+  <nav style="position:static;" class="navbar navbar-expand-sm navbar-dark flex-column align-items-stretch">
         
     <div class=" d-flex align-items-center" style="justify-content: space-evenly; ">
         <!-- <img class="header-left" src="{% static 'images/IDFC_FIRST_Bank_logo.jpg' %}" style="height: 60px; width: 120px;overflow: hidden;"> -->
-        <img class="header-left" src="{% static 'logowwcd.png' %}" style="height: 100px; width: 100px;overflow: hidden;">
-        <img class="header" src="{% static 'WCD_Logo_PNG.png' %}" style="height: 100px; width: 130px;overflow: hidden;">
-        <img class="header" src="{% static 'mhgov.png' %}" style="height: 100px; width: 130px;overflow: hidden;">
-        <h3 style="color:white;">Maharashtra: Women & Child Development</h3>
+        <img class="header-left" src="{% static 'logowwcd.png' %}" style="height:auto; width: 10%;overflow: hidden;">
+        <img class="header" src="{% static 'WCD_Logo_PNG.png' %}" style="height:auto; width: 10%;overflow: hidden;">
+        <img class="header" src="{% static 'mhgov.png' %}" style="height:auto; width: 10%;overflow: hidden;">
+        <h3 style="color:white;height: 25%; width: 25%;">Maharashtra: Women & Child Development</h3>
     </div>
         
     </div>
@@ -190,21 +187,10 @@ body {
 </nav>
 
 
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item disable">
-        <p> <span class="sr-only">(current)</span></p>
-      </li>
-
-  </div>
-</nav>
-
-
 <div class="full-height">
-  <div class="row h-100">
-    <div class="container-fluid">
-      <div id="mapdiv" class="col-12 h-100"></div>
+  <div style="height: 100%;" >
+    <div style="flex-direction: column; height:100%;">
+      <div id="mapdiv" style="height: 100%;" class="col-12"></div>
       <div>
       
          <!-- ======= Footer ======= -->
@@ -343,6 +329,8 @@ $('.select').click(function () {
   var ctlZoomslider = L.control.zoomslider({position:'topright'}).addTo(mymap);
   
   ctlAttribute = L.control.attribution({position:'bottomleft'}).addTo(mymap);
+
+  
 
       
 </script>
