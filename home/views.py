@@ -5,7 +5,9 @@ def homePage(request):
     return render(request, 'viewHome.html')
 def viewMap(request):
     awc = RuralInfraAwcAcEnglishconverted.objects.filter(agan_type='मुख्य',project='Yavatmal')
-    context = {'awc': awc}
+    # print(awc)
+    data = RuralInfraAwcAcEnglishconverted.objects.values('district','project_2','latitude','longitude','agan_type','awc_code','beat','project','agancbuil_field','child_sitagan').filter(district='Ahmadnagar')[:100]
+    context = {'awc': awc,'data':data}
     return render(request,'viewMap.html',context)
     # return render(request, 'viewMap.html')
 
