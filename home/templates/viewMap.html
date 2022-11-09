@@ -263,7 +263,7 @@
          </select>
   </div> 
     </div>
-    <a href="" id="get-data"class="btn btn-primary">Get Data</a> 
+    {% comment %} <a href="" id="get-data"class="btn btn-primary">Get Data</a>  {% endcomment %}
     <button onclick="plotData()" id="plot-data"class="btn btn-primary">Plot Data</button>
     <button onclick="download()" id="down-data"class="btn btn-primary">Download Data</button>
     <button onclick="clearAll()" id="clear-data"class="btn btn-primary">Clear All</button>
@@ -294,7 +294,7 @@
         }
     
       </style>
-     
+{% comment %} 
 {% for i in awc %}
     <!-- console.log("awc rural infra id is "+'{{i.beat}}'); -->
  
@@ -364,7 +364,7 @@
         }
     })
     </script>
-{% endfor %}
+{% endfor %} {% endcomment %}
 
     <script>
         
@@ -458,7 +458,7 @@
             });
         });
 
-        document.getElementById("get-data").addEventListener("click", function(event){
+        {% comment %} document.getElementById("get-data").addEventListener("click", function(event){
             let urlSplit = (window.location.href.split('/'));
                 let currentURL = `${urlSplit[0]}//${urlSplit[2]}/map/`
                 console.log(currentURL)
@@ -483,7 +483,7 @@
                     console.log(url);
                 //   }
 
-                });
+                }); {% endcomment %}
 });
 
         // *****************
@@ -781,46 +781,155 @@
             //     putSlums("slumhh")
     }
 
-
+    
+    var plotted = false;  
+    let points = [];
+    let points_layer=[];
+    let angtyp="";
     function plotData(){
         var dist = document.getElementById("district").value;
         var taluka = document.getElementById("block_s").value;
-        if(document.getElementsByClassName("agan_type").checked) var angtyp = document.querySelector(".agan_type:checked").value;
+        if(angtyp = document.querySelector(".agan_type:checked")!=null) {
+            angtyp = document.querySelector(".agan_type:checked").value;
+        }
         var constr = document.getElementById("construction").value;
         var sitang = document.getElementById("sitangan").value;
 
-        //console.log(`${dist},${taluka},${angtyp},${constr},${sitang}`)
-        d3.csv("{% static 'data/rural_infra_awc_ac_englishConverted.csv' %}", function(data) {
-        
-            var points = [];
-            if(dist!=""){
-                data.forEach(e =>{
-                    //if(e.district == dist)
-                    console.log(data.latitude)
-                    var point = L.marker([parseFloat(data.latitude), parseFloat(data.longitude)])
-                    point.addTo(mymap);
-                    points.push(point)
-                })
-            }
-            if(taluka!=""){
-                data.forEach(e =>{
-                })
-            }
-            if(!document.getElementsByClassName("agan_type").checked){
-                data.forEach(e =>{
-                })
-            }
-            if(constr!=""){
-                data.forEach(e =>{
-                })
-            }
-            if(sitang!=""){
-                data.forEach(e =>{
-                })
-            }
-        })
+        console.log(`${dist},${taluka},${angtyp},${constr},${sitang}`)
         
         
+            
+        
+        //console.log(document.querySelector(".agan_type:checked").value)
+                if(dist!=""){
+                    if(!plotted){
+                        {% for i in data %}
+                        if("{{ i.district }}"==dist){
+                            points.push({'district':`{{i.district}}`,'taluka':`{{i.project_2}}`,'latitude':`{{i.latitude}}`,'longitude':`{{i.longitude}}`,'awc_type':`{{i.agan_type}}`,'awc_code':"{{i.awc_code}}",'beat':"{{i.beat}}",'project':"{{i.project}}",'construction':`{{i.agancbuil_field}}`,'sitang':`{{i.child_sitagan}}` })
+                            
+                        }
+                        {% endfor %}
+                        
+                    }else{
+                        var n_pts = points.slice(0);
+                        replot();
+                        n_pts.forEach(e=>{
+                            if(e.district==dist){
+                                points.push({'district':e.district,'taluka':e.taluka,'latitude':e.latitude,'longitude':e.longitude,'awc_type':e.awc_type,'awc_code':e.awc_code,'beat':e.beat,'project':e.project,'construction':e.construction,'sitang':e.sitangan })
+                            }
+                        })
+                    }
+                    plotted = true;
+
+                }
+                if(taluka!=""){
+                    console.log("taluka")
+                    if(!plotted){
+                        {% for i in data %}
+                        if("{{ i.project_2 }}"==taluka){
+                            points.push({'district':`{{i.district}}`,'taluka':`{{i.project_2}}`,'latitude':`{{i.latitude}}`,'longitude':`{{i.longitude}}`,'awc_type':`{{i.agan_type}}`,'awc_code':"{{i.awc_code}}",'beat':"{{i.beat}}",'project':"{{i.project}}",'construction':`{{i.agancbuil_field}}`,'sitang':`{{i.child_sitagan}}` })
+
+                        }
+                        {% endfor %}
+                        plotted=true;
+                        
+
+                    }else{
+                        var n_pts = points.slice(0);
+                        replot();
+                        n_pts.forEach(e=>{
+                            if(e.taluka==taluka){
+                                points.push({'district':e.district,'taluka':e.taluka,'latitude':e.latitude,'longitude':e.longitude,'awc_type':e.awc_type,'awc_code':e.awc_code,'beat':e.beat,'project':e.project,'construction':e.construction,'sitang':e.sitangan })
+                            }
+                        })
+                    }
+                    
+                }
+                //if(document.getElementsByClassName("agan_type").checked){
+                if(angtyp!=""){
+                    
+                    console.log("false awctype")
+                    if(!plotted){
+                        {% for i in data %}
+                        if("{{ i.agan_type }}"==angtyp){
+                            points.push({'district':`{{i.district}}`,'taluka':`{{i.project_2}}`,'latitude':`{{i.latitude}}`,'longitude':`{{i.longitude}}`,'awc_type':`{{i.agan_type}}`,'awc_code':"{{i.awc_code}}",'beat':"{{i.beat}}",'project':"{{i.project}}",'construction':`{{i.agancbuil_field}}`,'sitang':`{{i.child_sitagan}}` })
+
+                        }
+                        {% endfor %}
+                        plotted=true;
+
+                    }else{
+                        var n_pts = points.slice(0);
+                        replot();
+                        n_pts.forEach(e=>{
+                            if(e.awc_type==angtyp){
+                                points.push({'district':e.district,'taluka':e.taluka,'latitude':e.latitude,'longitude':e.longitude,'awc_type':e.awc_type,'awc_code':e.awc_code,'beat':e.beat,'project':e.project,'construction':e.construction,'sitang':e.sitangan })
+                            }
+                        })
+                    }
+                    
+                }
+                if(constr!=""){
+                    console.log("const")
+                    
+                    if(!plotted){
+                        {% for i in data %}
+                        if("{{ i.agancbuil_field }}"==constr){
+                            points.push({'district':`{{i.district}}`,'taluka':`{{i.project_2}}`,'latitude':`{{i.latitude}}`,'longitude':`{{i.longitude}}`,'awc_type':`{{i.agan_type}}`,'awc_code':"{{i.awc_code}}",'beat':"{{i.beat}}",'project':"{{i.project}}",'construction':`{{i.agancbuil_field}}`,'sitang':`{{i.child_sitagan}}` })
+
+                        }
+                        {% endfor %}
+                        plotted=true;
+
+                    }else{
+                        var n_pts = points.slice(0);
+                        replot();
+                        n_pts.forEach(e=>{
+                            if(e.construction==constr){
+                                points.push({'district':district,'taluka':e.taluka,'latitude':e.latitude,'longitude':e.longitude,'awc_type':e.awc_type,'awc_code':e.awc_code,'beat':e.beat,'project':e.project,'construction':e.construction,'sitang':e.sitangan })
+                            }
+                        })
+                    }
+                    
+                }
+                if(sitang!=""){
+                    console.log("sitan")
+
+                    if(!plotted){
+                        {% for i in data %}
+                        if("{{ i.child_sitagan }}"==sitang){
+                            points.push({'district':`{{i.district}}`,'taluka':`{{i.project_2}}`,'latitude':`{{i.latitude}}`,'longitude':`{{i.longitude}}`,'awc_type':`{{i.agan_type}}`,'awc_code':"{{i.awc_code}}",'beat':"{{i.beat}}",'project':"{{i.project}}",'construction':`{{i.agancbuil_field}}`,'sitang':`{{i.child_sitagan}}` })
+
+                        }
+                        {% endfor %}
+                        plotted=true;
+
+                    }else{
+                        var n_pts = points.slice(0);
+                        replot();
+                        n_pts.forEach(e=>{
+                            if(e.sitangan==sitang){
+                                points.push({'district':district,'taluka':e.taluka,'latitude':e.latitude,'longitude':e.longitude,'awc_type':e.awc_type,'awc_code':e.awc_code,'beat':e.beat,'project':e.project,'construction':e.construction,'sitang':e.sitangan })
+                            }
+                        })
+                    }
+                    
+                }
+
+            console.log(points.length)
+             points.forEach(e=>{
+                var pt = L.marker([e.latitude, e.longitude],{icon:icon1})
+                pt.addTo(mymap);
+                pt.bindPopup(`<div>District: ${e.district}<br> Taluka: ${e.taluka}<br> AWC Type: ${e.awc_type}<br> AWC Construction: ${e.construction}<br> Sitangan: ${e.sitangan}</div>`)
+                points_layer.push(pt);
+             })
+        
+        
+        
+    }
+
+    function replot(){
+        points = []
     }
 
     function clearAll(){
@@ -830,6 +939,16 @@
         document.getElementById("block_s").selectedIndex = "";
         document.getElementById("construction").selectedIndex = "";
         document.getElementById("sitangan").selectedIndex = "";
+
+        points_layer.forEach(e=>{
+            mymap.removeLayer(e);
+        })
+
+        distLayerList.forEach(layer => mymap.removeLayer(layer));
+        talLayerList.forEach(layer => mymap.removeLayer(layer));
+        points=[]
+        points_layer=[]
+        plotted=false;
     }
 
     </script>
