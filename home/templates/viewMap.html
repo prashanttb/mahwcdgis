@@ -221,31 +221,43 @@
 
     </div>
     <div class="border">
+        {% csrf_token %}
+    <form method="POST" id="post-form">
+        <div class="tooltips" title="Please select the District">
+              <select name="district" class='form-control' id = "district">
+                <option value="Select District"> Select District</option>
+                {% for i in district %}
+                <option value="{{ i.district }}">{{ i.district }}</option>
+                {% endfor %}
+               </select>
+        </div> 
+        
      
-      <div class="tooltips" title="Please select the District">
-            <select class='form-control' id = "district">
-              <option value=""> Select District</option>
-             </select>
-      </div> 
 
-       <div class="tooltips" style="display:none;" title="Please select the Maharashtra's Blocks" id="block">
+       <div class="tooltips" title="Please select the Maharashtra's Blocks" id="block">
         &nbsp;&nbsp;
-            <select class='form-control' id="block_s">
-              <option value=""> Select Taluka </option>
+            <select name="taluka" class='form-control' id="block_s">
+              <option value="Select Taluka"> Select Taluka </option>
+              {% for i in taluka %}
+              <option value="{{ i.block_n }}">{{ i.block_n }}</option>
+              {% endfor %}
              </select>
       </div> 
+      <!-- <button type="submit" class="btn btn-primary">ddd</button> -->
+
+    
     </div>
     <div>
         <p>Please select type of Aganwadi</p>
-        <input type="radio" id="agan_main" class="agan_type" name="agan_type" value="मुख्य" onchange="getFacility(this)">
+        <input type="radio" id="agan_main" class="agan_type" name="agan_type" value="मुख्य">
         <label for="html">मुख्य</label><br>
-        <input type="radio" id="agan_mini" class="agan_type" name="agan_type" value="मिनी" onchange="getFacility(this)">
+        <input type="radio" id="agan_mini" class="agan_type" name="agan_type" value="मिनी">
         <label for="css">मिनी</label><br>
     
     </div>
     <div class="border">
         <div class="tooltips mb-3" title="Please select the Construction Type">
-            <select class='form-control' id = "construction">
+            <select name="constr" class='form-control' id = "construction">
               <option value=""> Select AWC Construction Type</option>
               <option value="अंगणवाडी इमारत नाही आहे">अंगणवाडी इमारत नाही आहे</option>
               <option value="कच्चे">कच्चे</option>
@@ -254,7 +266,7 @@
              </select>
       </div> 
       <div class="tooltips" title="Please select the Angan">
-        <select class='form-control' id = "sitangan">
+        <select name="sitangan" class='form-control' id = "sitangan">
           <option value=""> Select Child Sit Angan</option>
           <option value="01-01-2020">01-01-2020</option>
           <option value="२१-४०">२१-४०</option>
@@ -263,8 +275,12 @@
          </select>
   </div> 
     </div>
-    {% comment %} <a href="" id="get-data"class="btn btn-primary">Get Data</a>  {% endcomment %}
-    <button onclick="plotData()" id="plot-data"class="btn btn-primary">Plot Data</button>
+    <!-- <button onclick="funct()" class="btn btn-primary">Plot Data</button> -->
+    <button type="submit" id="fs" class="btn btn-primary">Plot Data</button>
+
+</form>
+    
+    <!-- <button onclick="plotData()" id="plot-data"class="btn btn-primary">Plot Data</button> -->
     <button onclick="download()" id="down-data"class="btn btn-primary">Download Data</button>
     <button onclick="clearAll()" id="clear-data"class="btn btn-primary">Clear All</button>
 
@@ -294,664 +310,433 @@
         }
     
       </style>
-{% comment %} 
-{% for i in awc %}
-    <!-- console.log("awc rural infra id is "+'{{i.beat}}'); -->
- 
-    <script>        
+
+      <script>
+
+var points=[];
+//var districtLayer;
+var talLayerList;
+
+var Raigad = [ 'Select Taluka', 'Pen','Alibag','Murud','Panvel','Uran','Karjat','Khalapur','Mangaon']
+var Ratnagiri = ['Select Taluka','Ratnagiri','Sangameshwar','Lanja','Rajapur ','Chiplun','Guhagar','Dapoli','Mandangad','Khed']
+var Sindhudurg = ['Select Taluka','Kankavli','Vaibhavwadi','Devgad','Malwan','Sawantwadi','Kudal','Vengurla','Dodamarg (Kasal)']
+var Palghar = ['Select Taluka','Palghar','Vasai','Dahanu','Talasari','Jawhar','Mokhada','Vada','Vikramgad']
+var nashik  = ['Select Taluka', 'Nashik','Igatpuri','Dindori','Peth','Trimbakeshwar','Kalwan','Deola','Surgana','Baglan(Satana)','Malegaon','Nandagaon','Chandwad','Niphad','Sinnar','Yeola']
+var Nandurbar = ['Select Taluka', 'Nandurbar','Navapur','Shahada','Talode','Akkalkuwa','Akrani(Dhadgaon)']
+var Dhule= ['Select Taluka', 'Dhule','Sakri','Sindkheda','Shirpur']
+var mumbai_suburb = ['Select Taluka','Kurla','Mulund','Andheri','Borivali']
+var Mumbai_City = ['Select Taluka','Mumbai']
+var Jalgaon = ['Select Taluka', 'Jalgaon','Jamner','Erandol','Dharangaon','Bhusawal','Raver','Muktainagar','Yawal','Amalner','Parola','Chopda','Pachora','Bhadgaon','Chalisgaon']
+var Buldhana = ['Select Taluka', 'Buldhana','Chikhli','Deulgaon','Jalgaon Jamod','Sangrampur','Malkapur','Motala','Nandura','Khamgaon','Shegaon','Mehkar','Sindkhed Raja','Lonar']
+var Akola = ['Select Taluka', 'Akola','Akot','Telhara','Patur','Murtajapur','Barshitakli']
+var Washim = ['Select Taluka', 'Wahim','Malegaon','Risod','Mangrulpir','Karanja','Manora']
+var Thane=['Select Taluka','Thane','Kalyan','Murbad','Bhiwandi','shahapur','Ulhasnagar','Ambarnath']
+var amravati = ['Select Taluka', 'Amravati','Bhatukali','Nandgaon Khandeshwar','Dharni (Amravati)','Chikhaldara','Achalpur','Chandurbazar','Morshi','Warud','Daryapur','Anjangaon-Surji','Chandur','Dhamangaon','Tiosa']
+var Wardha = ['Select Taluka', '	Wardha','Deoli','Seloo','Arvi','Ashti','Karanja','Hinganghat','Samudrapur']
+var nagpur = ['Select Taluka', 'Nagpur','Kamptee','Hingna','Katol','Narkhed','Savner','Kalameshwar','Ramtek','Mouda','Parseoni','Umred','Kuhi','Bhiwapur']
+var Bhandara = ['Select Taluka', 'Bhandara','Tumsar','Pauni','Mohadi','Sakoli','Lakhni','Lakhandur']
+var Gondia = ['Select Taluka', 'Gondia','Tiroda','Goregaon','Arjuni Morgaon','Amgaon','Salekasa','Sadak Arjuni ','Deori']
+var gadchiroli = ['Select Taluka', 'Gadchiroli','Dhanora','Chamorshi','Mulchera','Desaiganj (Vadasa)','Armori','Kurkheda','Korchi','Korchi','Bhamragad','Sironcha']
+var Chandrapur = ['Select Taluka', 'Chandrapur','Saoli','Mul','Ballarpur','Pombhurna','Gondpimpri','Warora','Chimur','Bhadravati','Bramhapuri','Nagbhid ','Sindewahi','Rajura','Korpana','Jivati']
+var Yavatmal = ['Select Taluka', 'Yavatmal','Arni','Babhulgaon','Kalamb','Darwha','Digras','Ner','Pusad','Umarkhed','Mahagaon','Kelapur (Pandharkawada)','Ralegaon','Ghatanji','Wani','Maregaon','Zari Jamani']
+var Nanded = ['Select Taluka', 'Nanded','Ardhapur','Mudkhed','Bhokar','Umri','Loha','Kandhar','Kinwat','Himayatnagar','Hadgaon','Mahur','Deglur','Mukhed','Dharmabad','Biloli','Naigaon (Khairgaon)']
+var Hingoli = ['Select Taluka', 'Hingoli','Sengaon','Kalamnuri','Basmath','Aundha Nagnath']
+var Parbhani = ['Select Taluka', 'Parbhani','Sonpeth','Gangakhed','Palam','Purna','Sailu','Jintur','Manwath','Pathri']
+var Jalna = ['Select Taluka', 'Jalna','Bhokardan','Jafrabad','Badnapur','Ambad','Ghansawangi','Partur','Mantha']
+var aurangabad = ['Select Taluka', 'Aurangabad','Kannad','Soegaon','Sillod','Phulambri','Khuldabad','Vaijapur','Gangapur','Paithan']
+var Beed= ['Select Taluka', 'Beed','Ashti','Patoda','Shirur-Kasar','Georai','Majalgaon','Wadwani','Kaij','Dharur','Parli','Ambejogai']
+var Latur = ['Select Taluka', 'Latur','Renapur','Ahmedpur','Jalkot','Chakur','Shirur Anantpal','Ausa','Nilanga','Deoni','	Udgir',]
+var Osmanabad = ['Select Taluka', 'Osmanabad','Tuljapur','Bhum','Paranda','Washi','Kalamb','Lohara','Umarga']
+var Solapur_North = ['Select Taluka', 'Solapur North','Barshi','Solapur South','Akkalkot','Madha','Karmala','Pandharpur','Mohol','Malshiras','Sangole','Mangalvedhe']
+var Ahmadnagar = ['Select Taluka', 'nagar','Shevgaon','Pathardi','Parner','Sangamner','Kopargaon','Akola','Shrirampur','Nevasa','Rahata','Rahuri','Shrigonda ','Karjat','Jamkhed']
+var pune = ['Select Taluka', 'Pune City','Haveli','Haveli - PCMC, PCMC','Khed (Rajgurunagar)','Junnar','Ambegaon (Ghodegaon)','Maval (Vadgaon)','Mulshi (Paud)','Shirur','Purandhar (Saswad)','Velhe','Bhor','Baramati','Indapur','Daund']
+var Satara = ['Select Taluka', 'Satara','Jaoli','Koregaon','Wai','Mahabaleshwar','Khandala','Phaltan','Maan (Dahiwadi)','Khatav (Vaduj)','Patan','Karad']
+var Sangli = ['Select Taluka', 'Miraj','Kavathe-Mahankal','Tasgaon','Jat','Walwa (Islampur)','Shirala','Khanapur-Vita ','Atpadi','Palus','Kadegaon']
+var Kolhapur = ['Select Taluka', 'Karvir','Panhala','Shahuwadi','Kagal','Hatkanangale','Shirol','Radhanagari','Gaganbawada','Bhudargad','Gadhinglaj','Chandgad','Ajra']
+
+
+const download = ()=>{
+    const rows = []
+    for(point of points){
+        const row=[]
+        for(attr in point.data){
+            row.push(point.data[attr])
+        }
+        rows.push(row);
         
-     var table1 = 
-          
-          `<table class="w3-table" id="popup" style="font-size:12px; align:left;" >
-            <tbody>
-          {% if i.picture %}
-            <tr>
-              <tr><img src={{ i.picture.url }} alt="No image uploaded" style="height:100px; width:170px; border:2px solid #555;"/>
-            </tr>
-            {% endif %}
+    }
+    console.log(rows[0]);
+    
+    
+    let csvContent = "data:text/csv;charset=utf-8," 
+    + rows.map(e => e.join(",")).join("\n");
+
+    var encodedUri = encodeURI(csvContent);
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "my_data.csv");
+    document.body.appendChild(link); // Required for FF
+
+    link.click();
+}
+
+$("#district").change(function(){
+    //document.getElementById('post-form').submit()
+    document.getElementById('fs').click()
+    DistrictSelected = $(this).val();
+    var optionsList;
+    var htmlString = "";
   
-            {% if i.project %}
-            <tr>
-                <th>ID name</th>
-                <th>{{ i.project}}</th>
-            </tr>
-            {% endif %}
-            {% if i.awc_code %}
-            <tr>
-                <th>AWC Code</th>
-                <th>{{ i.awc_code}}</th>
-            </tr>
-            {% endif %}
-            {% if i.beat %}
-            <tr>
-                <th>Beat</th>
-                <th>{{ i.beat}}</th>
-            </tr>
-            {% endif %}
-            {% if i.project %}
-            <tr>
-                <th>Aganwadi Type</th>
-                <th>{{ i.agan_type}}</th>
-            </tr>
-            {% endif %}
-        </tbody>
-    </table>
-     </br>`
-    var popupOptions =
-    {
-        'maxWidth': '500',
-        'className' : 'another-popup' // classname for another popup
+    districtLayer = L.tileLayer.wms('https://geoserver2.communitygis.net/geoserver/wms', {
+            layers: '	geonode:maharashtra_districts',
+            format: 'image/png',
+            transparent: 'true',
+            cql_filter:`district='${DistrictSelected}'`,
+          });
+          districtLayer.addTo(mymap);
+  
+    switch (DistrictSelected) {
+      case "Raigad":
+          optionsList = Raigad;
+          break;
+      case "Ratnagiri":
+          optionsList = Ratnagiri;
+          break;
+      case "Sindhudurg":
+          optionsList = Sindhudurg;
+          break;
+      case "mumbai_suburb":
+          optionsList = mumbai_suburb;
+          break;
+      case "Mumbai City":
+          optionsList = Mumbai_City;
+          break;
+      case "Thane":
+          optionsList = Thane;
+          break;
+      case "Palghar":
+          optionsList = Palghar;
+          break;
+      case "Nashik":
+          optionsList = nashik;
+          break;
+      case "Nandurbar":
+          optionsList = Nandurbar;
+          break;
+      case  "Dhule":
+          optionsList = Dhule;
+          break;
+      case "Jalgaon":
+          optionsList = Jalgaon;
+          break;
+      case "Buldhana":
+          optionsList = Buldhana;
+          break;
+      case "Akola":
+          optionsList = Akola;
+          break;
+      case "Washim":
+          optionsList = Washim;
+          break;
+      case  "Amravati":
+          optionsList = amravati;
+          break;
+      case "Wardha":
+          optionsList = Wardha;
+          break;
+      case  "Nagpur":
+          optionsList = nagpur;
+          break;
+      case "Bhandara":
+          optionsList = Bhandara;
+          break;
+      case  "Gondia":
+          optionsList = Gondia;
+          break;
+      case "Gadchiroli":
+          optionsList = gadchiroli;
+          break;
+      case  "Chandrapur":
+          optionsList = Chandrapur;
+          break;
+      case "Yavatmal":
+          optionsList = Yavatmal;
+          break;
+      case  "Nanded":
+          optionsList = Nanded;
+          break;
+      case "Hingoli":
+          optionsList = Hingoli;
+          break;
+      case  "Parbhani":
+          optionsList = Parbhani;
+          break;
+      case "Jalna":
+          optionsList = Jalna;
+          break;
+      case  "Aurangabad":
+          optionsList = aurangabad;
+          break;
+      case  "Beed":
+          optionsList = Beed;
+          break;
+      case "Latur":
+          optionsList = Latur ;
+          break;
+      case  "Osmanabad":
+          optionsList = Osmanabad;
+          break;
+      case  "Solapur_North":
+          optionsList = Solapur_North;
+          break;
+      case "Ahmadnagar":
+          optionsList = Ahmadnagar;
+          break;
+      case  "Pune":
+          optionsList = pune;
+          break;
+      case "Satara":
+          optionsList = Satara;
+          break;
+      case  "Sangli":
+          optionsList = Sangli;
+          break;
+      case "Kolhapur":
+          optionsList = Kolhapur;
+          break;
+  
+  }
+  
+  // console.log(optionsList)
+    for(var i = 0; i < optionsList.length; i++){
+      htmlString = htmlString+"<option value='"+ optionsList[i] +"'>"+ optionsList[i] +"</option>";
     }
-    var iconvar = icon1;
-    var marker = L.marker(["{{ i.latitude }}", "{{ i.longitude }}"], {icon:iconvar}).addTo(mymap).bindPopup(table1, popupOptions);
-    // var marker = L.marker(["{{ i.lat }}", "{{ i.lng }}"], {icon:iconvar}).addTo(mymap);
-    awcLayer.addLayer(marker);
-    marker.on('mouseover', function (e) {
-        this.openPopup(e.latlng);
-            });
-    marker.on('mouseout', function (e) {
-            this.openPopup(e.latlng);
-    });
-    marker.on('click', function (e) {
-            this.openPopup(e.latlng);
-    });
-    mymap.on ({
-        click: function() {
-            isClicked = false
-            },
-        popupclose: function () {
-            isClicked = false
-        }
-    })
-    </script>
-{% endfor %} {% endcomment %}
-
-    <script>
-        
-        $(document).ready(function() {
-            $("#block").show();
-            
-        //code for dependent dropdown start  
-        
-        function filterCSV(csv, key, value) 
-        {
-            var result = [];
-            var unique = [];
-
-            csv.forEach(function(val, idx, arr) {
-
-                if (val[key] == value) {
-                    //console.log(val.pincode);
-                    if (!unique[val.Districtname]) {
-                        result.push(val.Districtname)
-                        unique[val.Districtname] = 1;
-                    }
-                }
-            })
-            return result;
-        }
-        function filterCSV3(csv, key, value) {
-            var result = [];
-            var unique = [];
-
-            csv.forEach(function(val, idx, arr) {
-
-                if (val[key] == value) {
-
-                    if (!unique[val.block]) {
-                        //console.log(val.block);
-
-                        result.push(val.block)
-                        unique[val.block] = 1;
-                    }
-                }
-            })
-            return result;
-        }
-
-
-        d3.csv("{% static 'data/maha_dist_block.csv' %}", function(data) {
-            // $('#indstate').on("change", function(d) {
-                var val = d3.select(this).property("value");
-                var val ='Maharashtra'
-                $('#district').find('option').not(':first').remove();
-                var data_1 = filterCSV(data, 'statename', val);
-                
-                var select = document.getElementById("district");
-                for (var i = 0; i < data_1.length; i++) {
-                    var opt = data_1[i];
-                    var el = document.createElement("option");
-                    el.textContent = opt;
-                    el.value = opt;
-                    select.appendChild(el);
-                }
-                $('#districtd3').val("");
-            
-
-            $('#district').on("change", function(d) {
-                // var val1 = document.getElementById("indstate").value;
-                var val1 = 'Maharashtra';
-                console.log("District change called with state ="+val1);
-                var val2 = d3.select(this).property("value");
-                console.log("and distrcit ="+val2);
-                
-
-                $('#block_s').find('option').not(':first').remove();
-                var data_3 = filterCSV3(data, 'Districtname', val2);
-                var select = document.getElementById("block_s");
-                for (var i = 0; i < data_3.length; i++) {
-                    var opt = data_3[i];
-                    var el = document.createElement("option");
-                    el.textContent = opt;
-                    el.value = opt;
-                    select.appendChild(el);
-                }
-                $('#block_sd3').val("");
-
-
-            });
-
-            $('#block_s').on("change", function(d){
-                clear_layer();
-                clear_tallayer();
-                
-            });
-        });
-
-        {% comment %} document.getElementById("get-data").addEventListener("click", function(event){
-            let urlSplit = (window.location.href.split('/'));
-                let currentURL = `${urlSplit[0]}//${urlSplit[2]}/map/`
-                console.log(currentURL)
-                  event.preventDefault()
-                  if(document.getElementsByName('agan_type')[0].checked)
-                    var sel_agantype =document.getElementById('agan_main').value;
-                  else
-                    var sel_agantype =document.getElementById('agan_mini').value;
-
-                //   let sel_agantype = document.getElementsByName('agan_type')[0].;
-                  let sel_dist = document.getElementById('district').value;
-                  let sel_block = document.getElementById('block_s').value;
-                //   let selected_zone = document.getElementById('selected_zone_text').innerHTML;
-                //   if(date==="" || date1=="" || selected_zone===""){
-                //     console.log("fill the value")
-                //     document.getElementById("error_msg").innerHTML = "<p>Please select Zones , from and to date<p>"
-                //   } 
-                //   else{
-                    let url = `${sel_agantype}&${sel_dist}&${sel_block}`;
-                    let uri = encodeURIComponent(url);
-                    // window.location = currentURL + uri;
-                    console.log(url);
-                //   }
-
-                }); {% endcomment %}
-});
-
-        // *****************
-        
-        function style(feature) {
-            return {
-                fillColor: "#0000",
-                weight: 2,
-                opacity: 1,
-                color: 'black',
-                // dashArray: '3',
-                fillOpacity: 0.7
-            };
-        }
-        const domain = ['https://geoserver2.communitygis.net/', 'http://localhost/','https://geonode.communitygis.in/'];
-        var rootUrl = domain[1] + 'geoserver/geonode/ows';
-
-        var defaultParameters = {
-            service: 'WFS',
-            version: '1.0.0',
-            request: 'GetFeature',
-            outputFormat: 'json'
-        };
-
-        var info = L.control();
-        var attribute_table = L.control({
-            position: 'bottomright'
-        });
-        var LayerList = [];
-        var pointLayerList = [];
-        var newLayerList = [];
-        var faciLayerList = [];
-        var pinLayerList = [];
-        var distLayerList = [];                            
-        var talLayerList = [];
-        var wardLayerList = [];
-        var wmshealthLayerList = [];
-        var wms_legend;
-        let insti_content;
-        var searchControl;
-
-        $('#district').on('change', function() {
-            // if (area) {
-            //     mymap.removeLayer(area);
-            // }
-            clear_layer();
-            // clearpoint_layer();
-            clear_pinlayer();
-            let district = document.getElementById('district').value;
-
-            putWMSLayerdist();
-
-
-            //mymap.spin(true,{lines: 15, length: 1, width: 50, scale: 200,radius: 200, color: "grey"});
-        })
-
-        $('#block_s').on('change', function() {
-            //     if (area) {
-            //     mymap.removeLayer(area);
-            // }   
-                // clearpoint_layer();
-
-                let taluka = document.getElementById('block_s').value;
-
-                putWMSLayertaluka();
-
-
-                //mymap.spin(true,{lines: 15, length: 1, width: 50, scale: 200,radius: 200, color: "grey"});
-            })
-
-
-       
-
-        function onEachFeature(feature, layer) {
-            layer.on({
-                mouseover: highlightFeature,
-                mouseout: resetHighlight,
-                //click: zoomToFeature,
-            });
-
-            layer.bindTooltip("<div style = 'text-transform: capitalize'>" + feature.properties.village_na + "</div>", {
-                permanent: true,
-                direction: "center",
-                className: "my-labels"
-            });
-
-
-        }
-
-        function highlightFeature(e) {
-            var layer = e.target;
-
-            layer.setStyle({
-                weight: 5
-            });
-            info.update(layer.feature.properties);
-            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-                layer.bringToFront();
-            }
-        }
-
-        function styleset() {
-            //var layer = e.target;
-
-            layer.setStyle({
-                weight: 5
-            });
-            
-        }
-
-
-
-        function resetHighlight(e) {
-            geojson.resetStyle(e.target);
-            info.update();
-        }
-
-
-        function putWMSLayerdist() {
-            var dist = document.getElementById('district').value;
-            var state = 'Maharashtra';
-            var layers = 'geonode:MH_block0';
-            console.log(dist);
-            //var stLayerLatLong= listState[indstate];
-            if (dist == 'Mumbai City' || dist == 'Mumbai Suburban')
-                mymap.setView([19.0760, 72.8777], 11);
-            if (state == "Chhattisgarh") {
-                layers = 'geonode:all_india_districts_11june2020';
-            }
-            clear_distlayer();
-            clear_tallayer();
-            var wms_layer = L.tileLayer.wms('https://geonode.communitygis.in/geoserver/wms', {
-                layers: 'MH_block0',
-                format: 'image/png',
-                transparent: 'true',
-                // version: '1.3.0',
-                // cql_filter: `district='${dist}' AND state='${state}'`,
-                cql_filter: `District='${dist}'`,
-                style: ""
-            });
-            console.log(wms_layer);
-            //clear_layer();
-            //clearpoint_layer();
-            wms_layer.addTo(mymap);
-            setViewByDistrict('geonode:MH_block0', state,dist);
-
-            //mymap.setView([stLayerLatLong[1],stLayerLatLong[2]],8);
-            distLayerList.push(wms_layer);
-            addWMSLegend(layers);
-
-
-        }
-
-        function putWMSLayertaluka() {
-            // clear_tallayer();
-            var dist = document.getElementById('district').value;
-            var taluka = document.getElementById('block_s').value;
-
-            var wms_layer = L.tileLayer.wms('https://geonode.communitygis.in/geoserver/wms', {
-                layers: "geonode:MH_block0",
-                // cql_filter: "taluka_nam='" + taluka + "'",
-                cql_filter: `Block='${taluka}' AND District='${dist}'`,
-                format: 'image/png',
-                transparent: 'true',
-                style: "color:red",
-            });
-            // clear_layer();
-            clear_tallayer();
-            // console.log(wms_layer);
-            wms_layer.addTo(mymap);
-            setView('geonode:MH_block0', taluka);
-            
-            talLayerList.push(wms_layer);
-            // console.log(taluka);    
-
-
-        }
-
-       
-
-
-        function addWMSLegend(layer) {
-            lagendGraphic = "https://geonode.communitygis.in/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" + layer + "&LEGEND_OPTIONS=forceLabels:on";
-            wms_legend = L.wmsLegend(lagendGraphic);
-        }
-
-
-      
-        function setView(layerName, selectedBoundary) {
-            // if (area) {
-            //     mymap.removeLayer(area);
-            // }
-            let rootUrl = 'https://geonode.communitygis.in/geoserver/geonode/ows';
-
-            let options = {
-                service: 'WFS',
-                version: '1.0.0',
-                request: 'GetFeature',
-                outputFormat: 'application/json',
-                typeName: layerName,
-                cql_filter: `Block='${selectedBoundary}'`,
-                propertyName: 'the_geom'
-            };
-            let parameters = L.Util.extend(options);
-            layer_url = rootUrl + L.Util.getParamString(parameters)
-            fetch(layer_url).then(
-                function(response) {
-                    if (response.status !== 200) {
-                        console.log('Looks like there was a problem. Status Code: ' +
-                            response.status);
-                        return;
-                    }
-                    response.json().then(function(geojsonData) {
-                        area = L.geoJson(geojsonData.features).addTo(mymap)
-                        lat = area.getBounds()._northEast.lat
-                        lng = area.getBounds()._northEast.lng
-                        mymap.setView([lat, lng - 0.4], 10)
-                    });
-                }).catch(function(err) {
-                console.log('Fetch Error :-S', err);
-            });
-        }
-
-        function setViewByDistrict(layerName, state,district) {
-            // if (area) {
-            //     mymap.removeLayer(area);
-            // }
-            alert(layerName+state+district);
-            var area = null
-            let rootUrl = 'https://geonode.communitygis.in/geoserver/geonode/ows';
-
-            let options = {
-                service: 'WFS',
-                version: '1.0.0',
-                request: 'GetFeature',
-                outputFormat: 'application/json',
-                typeName: layerName,
-                cql_filter: `District='${district}'`,
-                propertyName: 'the_geom'
-            };
-            let parameters = L.Util.extend(options);
-            layer_url = rootUrl + L.Util.getParamString(parameters)
-
-            fetch(layer_url).then(
-                function(response) {
-                    if (response.status !== 200) {
-                        console.log('Looks like there was a problem. Status Code: ' +
-                            response.status);
-                        return;
-                    }
-                    response.json().then(function(geojsonData) {
-                        area = L.geoJson(geojsonData.features)
-                        lat = area.getBounds()._northEast.lat
-                        lng = area.getBounds()._northEast.lng
-                        mymap.setView([lat - .5, lng - 0.9], 9)
-                    });
-                }).catch(function(err) {
-                console.log('Fetch Error :-S', err);
-            });
-        }
-
-        function clear_layer() {
-            LayerList.forEach(layer => mymap.removeLayer(layer));
-
-        }
-
-        function clear_distlayer() {
-            distLayerList.forEach(layer => mymap.removeLayer(layer));
-
-        }
-
-        function clear_tallayer() {
-            console.log(talLayerList[0]);
-            console.log("In clear taluka layer")
-            talLayerList.forEach(layer => mymap.removeLayer(layer));
-
-        }
-
-        function clear_pinlayer() {
-            pinLayerList.forEach(layer => mymap.removeLayer(layer));
-        }
-        
-
-        function getFacility(obj) {
-            // mymap.setView([19.0110, 72.8512], 12);
-            let facility = obj.value;
-            let dist = document.getElementById('district').value;
-            let block = document.getElementById('block').value;
-            console.log("type is :"+facility);
-
-            console.log("district is :"+dist);
-            console.log("Block is : "+block);
-            // if ($(obj).is(":checked")) {
-            //     if(facility=="slumhh"){
-            //     putSlums("slumhh")
-    }
+    $("#block_s").html(htmlString);
 
     
-    var plotted = false;  
-    let points = [];
-    let points_layer=[];
-    let angtyp="";
-    function plotData(){
-        var dist = document.getElementById("district").value;
-        var taluka = document.getElementById("block_s").value;
-        if(angtyp = document.querySelector(".agan_type:checked")!=null) {
-            angtyp = document.querySelector(".agan_type:checked").value;
-        }
-        var constr = document.getElementById("construction").value;
-        var sitang = document.getElementById("sitangan").value;
+  
+  });
 
-        console.log(`${dist},${taluka},${angtyp},${constr},${sitang}`)
-        
-        
-            
-        
-        //console.log(document.querySelector(".agan_type:checked").value)
-                if(dist!=""){
-                    if(!plotted){
-                        {% for i in data %}
-                        if("{{ i.district }}"==dist){
-                            points.push({'district':`{{i.district}}`,'taluka':`{{i.project_2}}`,'latitude':`{{i.latitude}}`,'longitude':`{{i.longitude}}`,'awc_type':`{{i.agan_type}}`,'awc_code':"{{i.awc_code}}",'beat':"{{i.beat}}",'project':"{{i.project}}",'construction':`{{i.agancbuil_field}}`,'sitang':`{{i.child_sitagan}}` })
-                            
-                        }
-                        {% endfor %}
-                        
-                    }else{
-                        var n_pts = points.slice(0);
-                        replot();
-                        n_pts.forEach(e=>{
-                            if(e.district==dist){
-                                points.push({'district':e.district,'taluka':e.taluka,'latitude':e.latitude,'longitude':e.longitude,'awc_type':e.awc_type,'awc_code':e.awc_code,'beat':e.beat,'project':e.project,'construction':e.construction,'sitang':e.sitangan })
-                            }
-                        })
-                    }
-                    plotted = true;
+$('#block_s').change(function(){
+    putWMSLayertaluka();
+    document.getElementById('fs').click()
+    //document.getElementById("post-form").submit();
+})
 
-                }
-                if(taluka!=""){
-                    console.log("taluka")
-                    if(!plotted){
-                        {% for i in data %}
-                        if("{{ i.project_2 }}"==taluka){
-                            points.push({'district':`{{i.district}}`,'taluka':`{{i.project_2}}`,'latitude':`{{i.latitude}}`,'longitude':`{{i.longitude}}`,'awc_type':`{{i.agan_type}}`,'awc_code':"{{i.awc_code}}",'beat':"{{i.beat}}",'project':"{{i.project}}",'construction':`{{i.agancbuil_field}}`,'sitang':`{{i.child_sitagan}}` })
+$('.agan_type').change(function(){
+    //formSubmit()
+    document.getElementById('fs').click()
+})
 
-                        }
-                        {% endfor %}
-                        plotted=true;
-                        
+$('#construction').change(function(){
+    putWMSLayertaluka();
+    document.getElementById('fs').click()
+    //document.getElementById("post-form").submit();
+})
 
-                    }else{
-                        var n_pts = points.slice(0);
-                        replot();
-                        n_pts.forEach(e=>{
-                            if(e.taluka==taluka){
-                                points.push({'district':e.district,'taluka':e.taluka,'latitude':e.latitude,'longitude':e.longitude,'awc_type':e.awc_type,'awc_code':e.awc_code,'beat':e.beat,'project':e.project,'construction':e.construction,'sitang':e.sitangan })
-                            }
-                        })
-                    }
-                    
-                }
-                //if(document.getElementsByClassName("agan_type").checked){
-                if(angtyp!=""){
-                    
-                    console.log("false awctype")
-                    if(!plotted){
-                        {% for i in data %}
-                        if("{{ i.agan_type }}"==angtyp){
-                            points.push({'district':`{{i.district}}`,'taluka':`{{i.project_2}}`,'latitude':`{{i.latitude}}`,'longitude':`{{i.longitude}}`,'awc_type':`{{i.agan_type}}`,'awc_code':"{{i.awc_code}}",'beat':"{{i.beat}}",'project':"{{i.project}}",'construction':`{{i.agancbuil_field}}`,'sitang':`{{i.child_sitagan}}` })
+$('#sitangan').change(function(){
+    putWMSLayertaluka();
+    document.getElementById('fs').click()
+    //document.getElementById("post-form").submit();
+})
 
-                        }
-                        {% endfor %}
-                        plotted=true;
+function setView(layerName, selectedBoundary) {
+    // if (area) {
+    //     mymap.removeLayer(area);
+    // }
+    let rootUrl = 'https://geonode.communitygis.in/geoserver/geonode/ows';
 
-                    }else{
-                        var n_pts = points.slice(0);
-                        replot();
-                        n_pts.forEach(e=>{
-                            if(e.awc_type==angtyp){
-                                points.push({'district':e.district,'taluka':e.taluka,'latitude':e.latitude,'longitude':e.longitude,'awc_type':e.awc_type,'awc_code':e.awc_code,'beat':e.beat,'project':e.project,'construction':e.construction,'sitang':e.sitangan })
-                            }
-                        })
-                    }
-                    
-                }
-                if(constr!=""){
-                    console.log("const")
-                    
-                    if(!plotted){
-                        {% for i in data %}
-                        if("{{ i.agancbuil_field }}"==constr){
-                            points.push({'district':`{{i.district}}`,'taluka':`{{i.project_2}}`,'latitude':`{{i.latitude}}`,'longitude':`{{i.longitude}}`,'awc_type':`{{i.agan_type}}`,'awc_code':"{{i.awc_code}}",'beat':"{{i.beat}}",'project':"{{i.project}}",'construction':`{{i.agancbuil_field}}`,'sitang':`{{i.child_sitagan}}` })
+    let options = {
+        service: 'WFS',
+        version: '1.0.0',
+        request: 'GetFeature',
+        outputFormat: 'application/json',
+        typeName: layerName,
+        cql_filter: `Block='${selectedBoundary}'`,
+        propertyName: 'the_geom'
+    };
+    let parameters = L.Util.extend(options);
+    layer_url = rootUrl + L.Util.getParamString(parameters)
+    fetch(layer_url).then(
+        function(response) {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                    response.status);
+                return;
+            }
+            response.json().then(function(geojsonData) {
+                area = L.geoJson(geojsonData.features).addTo(mymap)
+                lat = area.getBounds()._northEast.lat
+                lng = area.getBounds()._northEast.lng
+                mymap.setView([lat, lng - 0.4], 10)
+            });
+        }).catch(function(err) {
+        console.log('Fetch Error :-S', err);
+    });
+}
 
-                        }
-                        {% endfor %}
-                        plotted=true;
+function setViewByDistrict(layerName, state,district) {
+    // if (area) {
+    //     mymap.removeLayer(area);
+    // }
+    alert(layerName+state+district);
+    var area = null
+    let rootUrl = 'https://geonode.communitygis.in/geoserver/geonode/ows';
 
-                    }else{
-                        var n_pts = points.slice(0);
-                        replot();
-                        n_pts.forEach(e=>{
-                            if(e.construction==constr){
-                                points.push({'district':district,'taluka':e.taluka,'latitude':e.latitude,'longitude':e.longitude,'awc_type':e.awc_type,'awc_code':e.awc_code,'beat':e.beat,'project':e.project,'construction':e.construction,'sitang':e.sitangan })
-                            }
-                        })
-                    }
-                    
-                }
-                if(sitang!=""){
-                    console.log("sitan")
+    let options = {
+        service: 'WFS',
+        version: '1.0.0',
+        request: 'GetFeature',
+        outputFormat: 'application/json',
+        typeName: layerName,
+        cql_filter: `District='${district}'`,
+        propertyName: 'the_geom'
+    };
+    let parameters = L.Util.extend(options);
+    layer_url = rootUrl + L.Util.getParamString(parameters)
 
-                    if(!plotted){
-                        {% for i in data %}
-                        if("{{ i.child_sitagan }}"==sitang){
-                            points.push({'district':`{{i.district}}`,'taluka':`{{i.project_2}}`,'latitude':`{{i.latitude}}`,'longitude':`{{i.longitude}}`,'awc_type':`{{i.agan_type}}`,'awc_code':"{{i.awc_code}}",'beat':"{{i.beat}}",'project':"{{i.project}}",'construction':`{{i.agancbuil_field}}`,'sitang':`{{i.child_sitagan}}` })
-
-                        }
-                        {% endfor %}
-                        plotted=true;
-
-                    }else{
-                        var n_pts = points.slice(0);
-                        replot();
-                        n_pts.forEach(e=>{
-                            if(e.sitangan==sitang){
-                                points.push({'district':district,'taluka':e.taluka,'latitude':e.latitude,'longitude':e.longitude,'awc_type':e.awc_type,'awc_code':e.awc_code,'beat':e.beat,'project':e.project,'construction':e.construction,'sitang':e.sitangan })
-                            }
-                        })
-                    }
-                    
-                }
-
-            console.log(points.length)
-             points.forEach(e=>{
-                var pt = L.marker([e.latitude, e.longitude],{icon:icon1})
-                pt.addTo(mymap);
-                pt.bindPopup(`<div>District: ${e.district}<br> Taluka: ${e.taluka}<br> AWC Type: ${e.awc_type}<br> AWC Construction: ${e.construction}<br> Sitangan: ${e.sitangan}</div>`)
-                points_layer.push(pt);
-             })
-        
-        
-        
+    fetch(layer_url).then(
+        function(response) {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' +
+                    response.status);
+                return;
+            }
+            response.json().then(function(geojsonData) {
+                area = L.geoJson(geojsonData.features)
+                lat = area.getBounds()._northEast.lat
+                lng = area.getBounds()._northEast.lng
+                mymap.setView([lat - .5, lng - 0.9], 9)
+            });
+        }).catch(function(err) {
+        console.log('Fetch Error :-S', err);
+    });
+}
+  
+function putWMSLayerdist() {
+    var dist = document.getElementById('district').value;
+    var state = 'Maharashtra';
+    var layers = 'geonode:MH_block0';
+    console.log(dist);
+    //var stLayerLatLong= listState[indstate];
+    if (dist == 'Mumbai City' || dist == 'Mumbai Suburban')
+        mymap.setView([19.0760, 72.8777], 11);
+    if (state == "Chhattisgarh") {
+        layers = 'geonode:all_india_districts_11june2020';
     }
+    //clear_distlayer();
+    //clear_tallayer();
+    var wms_layer = L.tileLayer.wms('https://geonode.communitygis.in/geoserver/wms', {
+        layers: 'MH_block0',
+        format: 'image/png',
+        transparent: 'true',
+        // version: '1.3.0',
+        // cql_filter: `district='${dist}' AND state='${state}'`,
+        cql_filter: `District='${dist}'`,
+        style: ""
+    });
+    console.log(wms_layer);
+    //clear_layer();
+    //clearpoint_layer();
+    wms_layer.addTo(mymap);
+    setViewByDistrict('geonode:MH_block0', state,dist);
 
-    function replot(){
-        points = []
-    }
+    //mymap.setView([stLayerLatLong[1],stLayerLatLong[2]],8);
+    distLayerList.push(wms_layer);
+    addWMSLegend(layers);
 
-    function clearAll(){
-        document.getElementById("agan_main").checked=false;
-        document.getElementById("agan_mini").checked=false;
-        document.getElementById("district").selectedIndex = "";
-        document.getElementById("block_s").selectedIndex = "";
-        document.getElementById("construction").selectedIndex = "";
-        document.getElementById("sitangan").selectedIndex = "";
 
-        points_layer.forEach(e=>{
-            mymap.removeLayer(e);
+}
+
+  function putWMSLayertaluka() {
+    // clear_tallayer();
+    var dist = document.getElementById('district').value;
+    var taluka = document.getElementById('block_s').value;
+
+    var wms_layer = L.tileLayer.wms('https://geonode.communitygis.in/geoserver/wms', {
+        layers: "geonode:MH_block0",
+        // cql_filter: "taluka_nam='" + taluka + "'",
+        cql_filter: `Block='${taluka}' AND District='${dist}'`,
+        format: 'image/png',
+        transparent: 'true',
+        style: "color:red",
+    });
+    // clear_layer();
+    //clear_tallayer();
+    // console.log(wms_layer);
+    wms_layer.addTo(mymap);
+    setView('geonode:MH_block0', taluka);
+    
+    talLayerList=wms_layer;
+    // console.log(taluka);    
+
+
+}
+
+var d;
+
+$(document).ready(
+    $('#post-form').submit(async function(e){
+        e.preventDefault();
+        var serializedData = $(this).serialize();
+        console.log('hjkhjh');
+
+        $.ajax({
+            type:"POST",
+            url: "{% url 'map' %}",
+            dataType: 'json',
+            data: serializedData,
+            success: function(data){
+                console.log("data")
+                d = JSON.parse(data["data"])
+                plotData()   
+            }
         })
+        console.log(' belowhjkhjh');
+    })
+)
 
-        distLayerList.forEach(layer => mymap.removeLayer(layer));
-        talLayerList.forEach(layer => mymap.removeLayer(layer));
-        points=[]
-        points_layer=[]
-        plotted=false;
+function formSubmit(){
+    document.getElementById("post-form").submit();
+}
+
+
+function plotData(){
+    //for(x in d){
+    //    console.log(d[x].fields.latitude)
+    //}
+    console.log("pltdata called")
+    clearAll()
+    for(x in d){
+        var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon1});
+        point.addTo(mymap)
+        point.data=d[x].fields;
+        point.bindPopup(`<div>District: ${d[x].fields.district}<br>Taluka: ${d[x].fields.block_n}<br>Anganwadi Type: ${d[x].fields.agan_type}<br>Construction: ${d[x].fields.agancbuil_field}<br>Sitangan: ${d[x].fields.child_sitagan}</div>`)
+        points.push(point)
     }
+}
 
-    </script>
+function clearAll(){
+    points.forEach(p=>{
+        mymap.removeLayer(p)
+    })
+    points=[]
+    //if(distLayerList){
+    //    mymap.removeLayer(distLayerList)
+    //}
+    if(talLayerList){
+        mymap.removeLayer(talLayerList)
+    }
+}
+
+function funct(){
+    console.log('sfsdfsdf')
+    document.getElementById('post-form').submit()
+
+}
+
+      </script>
+
     
     
   {% endblock %}
