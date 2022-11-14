@@ -6,6 +6,7 @@ class RuralInfraAwcAcEnglishconverted(models.Model):
     geom = models.TextField(blank=True, null=True)
     awc_code = models.CharField(max_length=254, blank=True, null=True)
     district = models.CharField(max_length=254, blank=True, null=True)
+    block_n = models.CharField(db_column='block_n', max_length=254, blank=True, null=True)
     project = models.CharField(max_length=254, blank=True, null=True)
     beat = models.CharField(max_length=254, blank=True, null=True)
     latitude = models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
