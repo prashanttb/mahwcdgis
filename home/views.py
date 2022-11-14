@@ -1,15 +1,50 @@
 from django.shortcuts import render
 from .models import RuralInfraAwcAcEnglishconverted
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.core import serializers
+
 # Create your views here.
 def homePage(request):
     return render(request, 'viewHome.html')
+
+@csrf_exempt
 def viewMap(request):
-    awc = RuralInfraAwcAcEnglishconverted.objects.filter(agan_type='मुख्य',project='Yavatmal')
-    # print(awc)
-    data = RuralInfraAwcAcEnglishconverted.objects.values('district','project_2','latitude','longitude','agan_type','awc_code','beat','project','agancbuil_field','child_sitagan').filter(district='Ahmadnagar')[:100]
-    context = {'awc': awc,'data':data}
-    return render(request,'viewMap.html',context)
-    # return render(request, 'viewMap.html')
+    if request.method == "POST":
+        dist = request.POST.get('district')
+        taluka = request.POST.get('taluka')
+        angan_type = request.POST.get('agan_type')
+        constr = request.POST.get('constr')
+        sitangan = request.POST.get('sitangan')
+        
+        filters = {}
+        if dist!="Select District":
+            filters['district'] = dist
+        if taluka!="Select Taluka":
+            filters['block_n'] = taluka
+        if angan_type!=None:
+            filters['agan_type'] = angan_type
+        if constr!="":
+            filters['agancbuil_field'] = constr
+        if sitangan!="":
+            filters['child_sitagan'] = sitangan
+
+        print(filters)
+        
+        district =RuralInfraAwcAcEnglishconverted.objects.filter(**filters)
+        # district = RuralInfraAwcAcEnglishconverted.objects.filter(district='')
+        district = serializers.serialize('json', district)
+        context={"data":district}
+        return JsonResponse(context)
+    
+    else:
+        awc = RuralInfraAwcAcEnglishconverted.objects.filter(agan_type='मुख्य',project='Yavatmal')
+        # print(awc)
+        district = RuralInfraAwcAcEnglishconverted.objects.values('district').order_by('district').distinct()
+        taluka = RuralInfraAwcAcEnglishconverted.objects.values('block_n').order_by('block_n').distinct()
+        context = {'awc': awc, 'district':district,'taluka':taluka}
+        return render(request,'viewMap.html',context)
+        # return render(request, 'viewMap.html')
 
 def aboutUs(request):
     return render(request, 'viewMap.html')
