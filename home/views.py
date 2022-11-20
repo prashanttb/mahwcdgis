@@ -22,7 +22,7 @@ def viewMap(request):
             filters['district'] = dist
         if taluka!="Select Taluka":
             filters['block_n'] = taluka
-        if angan_type!=None:
+        if angan_type!="":
             filters['agan_type'] = angan_type
         if constr!="":
             filters['agancbuil_field'] = constr
