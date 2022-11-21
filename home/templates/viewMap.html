@@ -247,12 +247,18 @@
 
     
     </div>
-    <div>
-        <p>Please select type of Aganwadi</p>
+    <div style="margin:20px" class="border"> 
+        <select name="agan_type" class='form-control' id = "agan_type">
+            <option value="">Select type of Aganwadi</option>
+            <option value="मुख्य">मुख्य</option>
+            <option value="मिनी">मिनी</option>
+        </select>
+
+        {% comment %} <p>Please select type of Aganwadi</p>
         <input type="radio" id="agan_main" class="agan_type" name="agan_type" value="मुख्य">
         <label for="html">मुख्य</label><br>
         <input type="radio" id="agan_mini" class="agan_type" name="agan_type" value="मिनी">
-        <label for="css">मिनी</label><br>
+        <label for="css">मिनी</label><br> {% endcomment %}
     
     </div>
     <div class="border">
@@ -356,7 +362,7 @@ var Kolhapur = ['Select Taluka', 'Karvir','Panhala','Shahuwadi','Kagal','Hatkana
 
 
 const download = ()=>{
-    const rows = []
+    const rows = [['awc_code','district','project','beat','latitude','longitude','altitude','accuracy','objectid','st_code','st_name','dist_code','dist_name','ac_no','ac_name','start','end','division','district_1','project_2','Beat_3','Anganwadi_4','agan_type','agancbuil_const','aganc_forrent','yes_moveagan_govpre','no_owner_agancbuil','child_sitagan','child_weigh_material','child_weigh_mat_working','adult_wtequip','adult_wteq_working','infant_meter','infant_meter_working','stadiometer','stadm_working','maint_repair_need','agan_drinkwat_avail','agan_tap','plumb_workcond','toil_fac','toil_working','electricity_connection','solar_powersupply','agan_tv','tv_working','agan_fenc','agan_back_gard','space_own_garden','vac_agan','post_vac','post_vac_aw_worker','post_vac_help','pro_fill_agan_post','child0_6monage','child6mon_3yr','child3 _6yrs','tot_no_child','preg_moth_agan','brestfeed_moth_agan','preg_lact_moth','aadh_notlinknuttrack','preg_lact_mothaadh_notlinked_nuttrack','child_weigh_meas_agan_mar22','child_heigh_meas_agan_mar22','no_suv_child_agan_Jan_mar22','no_suv_child_recthr_jan_mar22','child_sam_agan_jan_mar22','child_rec_vcdc_fac','sam_child_agan_vcdc_jan_mar22','sam_agan_nrc_jan_mar22','no_adol_girl_dropsch_agan','child_agan_sch_engl_priv_nurs','ifyes_childenrol_agan_sch_priv_nurs_engl','agan_rec_migr_bene','bene_agan_migr_indist','agan_bene_migr_outdist','benetot_migr_out','migrbenetot_agancentarea','agan_serv_migr_outaganarea','ifyes_aganspen10pergdp_endmar22','ifyes_gp_spent_10pergdp_endmarch22','aay','totno_child_serv_aay_6mon_6yrs','preg_lact_mother_serv_aay_ecd','parvisit_inibalasch','parent_visit_past_year','balasch','agan_und_balasch','work_comund_balasch_mar22','ifcom_ongo_task_comp_undbalasch','ifcom_ongo_task_comp_undbalasch1','ifcom_ongo_task_comp_undbalasch_sandpit','ifcom_ongo_task_comp_undbalasch_lawn','ifcom_ongo_task_comp_undbalasch_display','ifcom_ongo_task_comp_undbalasch_writboar','sign_sup_chserv','sign_sup_headmisurl','_id','_uuid','_submission_time','_validation_status','_notes','_status','_submitted_by','_tags','_index']]
     for(point of points){
         const row=[]
         for(attr in point.data){
@@ -523,7 +529,7 @@ $('#block_s').change(function(){
     //document.getElementById("post-form").submit();
 })
 
-$('.agan_type').change(function(){
+$('#agan_type').change(function(){
     //formSubmit()
     document.getElementById('fs').click()
 })
@@ -565,7 +571,8 @@ function setView(layerName, selectedBoundary) {
                 return;
             }
             response.json().then(function(geojsonData) {
-                area = L.geoJson(geojsonData.features).addTo(mymap)
+                //area = L.geoJson(geojsonData.features).addTo(mymap)
+                area = L.geoJson(geojsonData.features)
                 lat = area.getBounds()._northEast.lat
                 lng = area.getBounds()._northEast.lng
                 mymap.setView([lat, lng - 0.4], 10)
