@@ -46,8 +46,14 @@ def viewMap(request):
         return render(request,'viewMap.html',context)
         # return render(request, 'viewMap.html')
 
-def aboutUs(request):
-    return render(request, 'viewMap.html')
+def about_wwd(request):
+    return render(request, 'about_wwd.html')
+
+def about_op(request):
+    return render(request, 'about_op.html')
+
+def about_p(request):
+    return render(request, 'about_p.html')
 
 def map_query(request):
     awc_rur_infra = RuralInfraAwcAcEnglishconverted.objects.all()
