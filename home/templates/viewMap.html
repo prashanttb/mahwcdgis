@@ -718,7 +718,7 @@ function plotData(){
         var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon1});
         point.addTo(mymap)
         point.data=d[x].fields;
-        point.bindPopup(`<div>District: ${d[x].fields.district}<br>Taluka: ${d[x].fields.block_n}<br>Anganwadi Type: ${d[x].fields.agan_type}<br>Construction: ${d[x].fields.agancbuil_field}<br>Sitangan: ${d[x].fields.child_sitagan}</div>`)
+        point.bindPopup(`<div><img src="${d[x].fields}"><br>District: ${d[x].fields.district}<br>Taluka: ${d[x].fields.block_n}<br>Anganwadi Type: ${d[x].fields.agan_type}<br>Construction: ${d[x].fields.agancbuil_field}<br>Sitangan: ${d[x].fields.child_sitagan}</div>`)
         points.push(point)
     }
 }
