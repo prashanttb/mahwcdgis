@@ -11,6 +11,7 @@ urlpatterns = [
     path('what-we-do', views.about_wwd, name='what-we-do'),
     path('our-team', views.about_op, name='our-team'),
     path('partners', views.about_p, name='partners'),
+    path('category', views.category, name='category')
    
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
