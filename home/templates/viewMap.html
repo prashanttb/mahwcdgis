@@ -845,9 +845,10 @@ $(document).ready(
                     $("#cate_val1").html(htmlString);
                     
                 }else{
-                    //document.getElementById('cate_val1').style.display = 'none';
+                    document.getElementById('cate_val1').style.display = 'none';
                     $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
                     document.getElementById('cate_val1').value="";
+                    document.getElementById('cate_val1').dispatchEvent(new Event('change'));
                 }
                 if(data.c2!=""){
                     document.getElementById('cate2').value = document.getElementById("category_2").value
@@ -863,6 +864,7 @@ $(document).ready(
                     document.getElementById('cate_val2').style.display = 'none';
                     $("#cate_val2").html("<option value='"+"'>"+ 'Select' +"</option>");
                     document.getElementById('cate2').value=""
+                    document.getElementById('cate_val2').dispatchEvent(new Event('change'));
                 }
                 if(data.c3!=""){
                     document.getElementById('cate3').value = document.getElementById("category_3").value
@@ -878,6 +880,7 @@ $(document).ready(
                     document.getElementById('cate_val3').style.display = 'none';
                     $("#cate_val3").html("<option value='"+"'>"+ 'Select' +"</option>");
                     document.getElementById('cate3').value=""
+                    document.getElementById('cate_val3').dispatchEvent(new Event('change'));
                 }
                 //console.log(data)  
             }
