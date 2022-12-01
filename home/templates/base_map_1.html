@@ -145,7 +145,7 @@ img{
 
 
   </style>
-  <nav style="position:static;" class="navbar navbar-expand-sm navbar-dark flex-column align-items-stretch">
+  {% comment %} <nav style="position:static;" class="navbar navbar-expand-sm navbar-dark flex-column align-items-stretch">
         
     <div class=" d-flex align-items-center" style="justify-content: space-evenly; ">
         <!-- <img class="header-left" src="{% static 'images/IDFC_FIRST_Bank_logo.jpg' %}" style="height: 60px; width: 120px;overflow: hidden;"> -->
@@ -165,7 +165,14 @@ img{
             <a href="{% url 'homepage' %}" class="nav-link text-white" >{% trans "Home" %}</a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link text-white">{% trans "About Us" %}</a>
+                <a id="aboutus" onmouseout="document.getElementById('optns').style.display = 'none';" onmouseover="document.getElementById('optns').style.display = 'block';" href="{% url 'aboutus' %}"  class="nav-link text-white">{% trans "About Us" %}</a>
+                <div onmouseout="document.getElementById('optns').style.display = 'none';" onmouseover="document.getElementById('optns').style.display = 'block';" style="background: #fff; position:fixed; z-index:11111; width:20%; color:#fff;" id="optns">
+                  <ul>
+                    <li style="padding: 10px;"><a style="padding: 10px; padding: 10px 25px 10px 25px;" href="">WHAT WE DO</a></li>
+                    <li style="padding: 10px;"><a href="">OUR TEAM</a></li>
+                    <li style="padding: 10px;"><a href="">PARTNERS</a></li>
+                  </ul>
+                </div>
             </li>
             <li class="nav-item">
                 <a href="{% url 'map' %}" class="nav-link text-white">{% trans "Maps" %}</a>
@@ -184,7 +191,7 @@ img{
     </ul>
     
     </nav>
-</nav>
+</nav> {% endcomment %}
 
 
 <div class="full-height">
@@ -258,16 +265,17 @@ var source = L.wms.source(
 //         // currentPos: [19.7515, 75.7139],
 //         // cql_filter: 'state=Maharashtra'
 // 	});
-  var wms = L.tileLayer.wms('https://geoserver2.communitygis.net/geoserver/wms', {
-                                        layers: 'geonode:states_in_india',
-                                        format: 'image/png',
-                                        transparent: 'true',
-                                        // version: '1.3.0',
-                                        cql_filter: "state='Maharashtra'",
-                                        style: ""
-                                    });
-  wms.addTo(mymap);
-  mymap.setView([19.000, 74.999],7);
+
+var wms = L.tileLayer.wms('https://geoserver2.communitygis.net/geoserver/wms', {
+  layers: 'geonode:states_in_india',
+  format: 'image/png',
+  transparent: 'true',
+  // version: '1.3.0',
+  cql_filter: "state='Maharashtra'",
+  style: ""
+});
+wms.addTo(mymap);
+
   // addWMSLegendfromgeo(layer);
 function round(value, precision) {
     var multiplier = Math.pow(10, precision || 0);
@@ -289,7 +297,26 @@ mymap.on('contextmenu',function(e){
   copyToClipboard(e.latlng.lat+","+e.latlng.lng);
   mymap.messagebox.show("<h6>Latitude:<b>"+round(e.latlng.lat,4)+"</b> Longitude:<b>"+round(e.latlng.lng,4)+"</b> copied to clipboard</h6>");
 });
+ 
 
+
+var baseLayers = {
+  
+};
+
+ 
+var overlays = {
+      //"States":indiaState,
+      "OSM":lyrOSM2,
+      "Satellite":lyrImagery,
+      //"Maharashtra Schools":mahaSchools
+};
+
+var layercontrol = L.control.layers(overlays, baseLayers).addTo(mymap);
+
+layercontrol.addOverlay
+
+mymap.setView([19.000, 74.999],7);
 
 
 $('.select').click(function () {
@@ -330,7 +357,6 @@ $('.select').click(function () {
   
   ctlAttribute = L.control.attribution({position:'bottomleft'}).addTo(mymap);
 
-  
 
       
 </script>
