@@ -70,6 +70,9 @@ def about_op(request):
 def about_p(request):
     return render(request, 'about_p.html')
 
+def contact_us(request):
+    return render(request, 'contact_us.html')
+
 def map_query(request):
     awc_rur_infra = RuralInfraAwcAcEnglishconverted.objects.all()
     context = {'awc_rural_infra': awc_rur_infra}
