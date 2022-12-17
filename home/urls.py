@@ -7,7 +7,7 @@ urlpatterns = [
    
     #path('aboutus', views.aboutUs, name='aboutus'),
     path('map', views.viewMap, name='map'),
-    path('contact', views.viewMap, name='contact'),
+    path('contact_us', views.contact_us, name='contact_us'),
     path('what-we-do', views.about_wwd, name='what-we-do'),
     path('our-team', views.about_op, name='our-team'),
     path('partners', views.about_p, name='partners'),
