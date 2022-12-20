@@ -24,7 +24,7 @@ def viewMap(request):
         cate_val2 = request.POST.get('cate_val2')
         cate_val3 = request.POST.get('cate_val3')
         
-        #print(cate2)
+        print(request.POST," -")
          
         filters = {}
         if dist!="Select District":
@@ -44,7 +44,7 @@ def viewMap(request):
         # if sitangan!="":
         #     filters['child_sitagan'] = sitangan
 
-        print(filters)
+        print("sjdaajskd ",filters)
         
         district =RuralInfraAwcAcEnglishconverted.objects.filter(**filters)
         # district = RuralInfraAwcAcEnglishconverted.objects.filter(district='')
@@ -100,3 +100,30 @@ def category(request):
         
         return JsonResponse(context)
         #return render(request,'viewMap.html')
+        
+def category_1(request):
+    category__1 = request.GET.get('category_1')
+    #print(category__1)
+    c1=""
+    if category__1!="":
+        c1 = list(RuralInfraAwcAcEnglishconverted.objects.values(category__1).order_by(category__1).distinct())
+    #print(d1)
+    return JsonResponse({'c1':c1})
+
+def category_2(request):
+    category__2 = request.GET.get('category_2')
+    #print(category__1)
+    c2=""
+    if category__2!="":
+        c2 = list(RuralInfraAwcAcEnglishconverted.objects.values(category__2).order_by(category__2).distinct())
+    #print(" ==",c2)
+    return JsonResponse({'c2':c2})
+
+def category_3(request):
+    category__3 = request.GET.get('category_3')
+    #print(category__1)
+    c3=""
+    if category__3!="":
+        c3 = list(RuralInfraAwcAcEnglishconverted.objects.values(category__3).order_by(category__3).distinct())
+    #print(" ==",c2)
+    return JsonResponse({'c3':c3})
