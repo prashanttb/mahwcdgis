@@ -209,6 +209,9 @@
     }
 </style>
 
+
+
+
 <div id="side-bar" style="background-color: rgba(255, 255, 255);">
     <!-- side-bar container -->
 
@@ -652,12 +655,14 @@ $("#district").change(function(){
   }
   
   // console.log(optionsList)
-    for(var i = 0; i < optionsList.length; i++){
-      htmlString = htmlString+"<option value='"+ optionsList[i] +"'>"+ optionsList[i] +"</option>";
+    if(optionsList!=undefined){
+        for(var i = 0; i < optionsList.length; i++){
+        htmlString = htmlString+"<option value='"+ optionsList[i] +"'>"+ optionsList[i] +"</option>";
+        }
     }
     $("#block_s").html(htmlString);
 
-    
+  console.log('not')  
   
   });
 
@@ -939,30 +944,30 @@ $(document).ready(
     })
 ) */}
 
-$('#category_1').change(function(){
+{/* $('#category_1').change(function(){
     document.getElementById('cate_submit').click();
     //document.getElementById('fs').click()
-} );
+} ); */}
 
 $('#cate_val1').change(function(){
     document.getElementById('cate_submit').click();
     //document.getElementById('fs').click()
 } );
 
-$('#category_2').change(function(){
+{/* $('#category_2').change(function(){
     document.getElementById('cate_submit').click();
     //document.getElementById('fs').click()
-} );
+} ); */}
 
 $('#cate_val2').change(function(){
     document.getElementById('cate_submit').click();
     //document.getElementById('fs').click()
 } );
 
-$('#category_3').change(function(){
+{/* $('#category_3').change(function(){
     document.getElementById('cate_submit').click();
     //document.getElementById('fs').click()
-} );
+} ); */}
 
 $('#cate_val3').change(function(){
     document.getElementById('cate_submit').click();
@@ -1005,7 +1010,7 @@ $(document).ready(
                     document.getElementById('cate1').value = document.getElementById("category_1").value
                     //console.log(document.getElementById('cate1').value)
                     document.getElementById('cate_val1').style.display = 'block';
-                    var htmlString="<option value='"+"'>"+ 'Select' +"</option>";
+                    var htmlString="<option value=''>"+ 'Select' +"</option>";
                     
                     data.c1.forEach(e=>{
                         for(k in e)
@@ -1026,7 +1031,7 @@ $(document).ready(
 
     $('#category_2').on('change',function(){
         var category_2 = $('#category_2').val()
-        console.log()
+
         $.ajax({
             type:"GET",
             url: "{% url 'category_2' %}",
@@ -1040,7 +1045,7 @@ $(document).ready(
                     document.getElementById('cate2').value = document.getElementById("category_2").value
                     //console.log(document.getElementById('cate1').value)
                     document.getElementById('cate_val2').style.display = 'block';
-                    var htmlString="<option value='"+"'>"+ 'Select' +"</option>";
+                    var htmlString="<option value=''>"+ 'Select' +"</option>";
                     
                     data.c2.forEach(e=>{
                         for(k in e)
@@ -1053,7 +1058,8 @@ $(document).ready(
                     document.getElementById('cate_val2').value="";
                     document.getElementById('cate_val2').dispatchEvent(new Event('change'));
                 }  
-
+                console.log('end')
+                
             }
         })
         //console.log($('#category_1').val())
@@ -1075,7 +1081,7 @@ $(document).ready(
                     document.getElementById('cate3').value = document.getElementById("category_3").value
                     //console.log(document.getElementById('cate1').value)
                     document.getElementById('cate_val3').style.display = 'block';
-                    var htmlString="<option value='"+"'>"+ 'Select' +"</option>";
+                    var htmlString="<option value=''>"+ 'Select' +"</option>";
                     
                     data.c3.forEach(e=>{
                         for(k in e)
@@ -1128,7 +1134,33 @@ function clearAll(){
     if(talLayer){
         mymap.removeLayer(talLayer)
     }
-    document.getElementById('district').value = "Select Taluka";
+    document.getElementById('block_s').value = "Select Taluka";
+
+    var htm = '<option value="Select Taluka"> Select Taluka </option>'
+                '{% for i in taluka %}'
+                htm=htm+'<option value='+'{{ i.block_n }}'+'>{{ i.block_n }}</option>'
+                '{% endfor %}'
+            $('#block_s').html(htm)
+
+    document.getElementById('category_1').value=""
+    document.getElementById('cate1').value=""
+    document.getElementById('category_2').value=""
+    document.getElementById('cate2').value=""
+    document.getElementById('category_3').value=""
+    document.getElementById('cate3').value=""
+
+    document.getElementById('cate_val1').style.display = 'none';
+    $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
+    document.getElementById('cate_val1').value="";
+
+    document.getElementById('cate_val2').style.display = 'none';
+    $("#cate_val2").html("<option value='"+"'>"+ 'Select' +"</option>");
+    document.getElementById('cate_val2').value="";
+
+    document.getElementById('cate_val3').style.display = 'none';
+    $("#cate_val3").html("<option value='"+"'>"+ 'Select' +"</option>");
+    document.getElementById('cate_val3').value="";
+
 }
 
 function replot(){
