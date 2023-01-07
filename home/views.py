@@ -127,3 +127,18 @@ def category_3(request):
         c3 = list(RuralInfraAwcAcEnglishconverted.objects.values(category__3).order_by(category__3).distinct())
     #print(" ==",c2)
     return JsonResponse({'c3':c3})
+
+def homepage_mr(request):
+    return render(request,'mr/viewHome.html')
+ 
+def about_wwd_mr(request):
+    return render(request, 'mr/about_wwd.html')
+
+def about_op_mr(request):
+    return render(request, 'mr/about_op.html')
+
+def about_p_mr(request):
+    return render(request, 'mr/about_p.html')
+
+def contact_us_mr(request):
+    return render(request,'mr/contact_us.html')
