@@ -510,8 +510,8 @@ z-index:1111;
                             <div class="stm-header__row-1 stm-header__row_center-1" style="display: flex;  box-sizing:border-box;">
                               <div class="stm-header__cell-1 stm-header__cell_left-1" style="display: flex; justify-content: flex-start;width:100%;"> 
                                 <div class="" style="display: flex;">
+                                  <div><a href=""><img style="height:100px;" src="{% static 'GoM.png' %}" alt=""></a></div>
                                   <div><a href=""><img src="https://mahnm.in/wp-content/uploads/2020/11/logoweb.png" alt=""></a></div>
-                                  <div><a href=""><img src="{% static 'mhgov1.png' %}" alt=""></a></div>
                                   <div><a href=""><img src="{% static 'WCD Logo_PNG.png' %}" alt=""></a></div>
                                 </div>
                               </div>
@@ -538,12 +538,12 @@ z-index:1111;
                               <div class="stm-header__cell-1 stm-header__cell_right-1" style="display: flex; justify-content: flex-end; align-items:center;width:100%;">
                                 <div style="display: flex; margin-left:30px;">
                                   <div>
-                                    <a href=""><span style="color: #000000; font-size:15px;font-family:Poppins;">English</span></a>
+                                    <a href="{% url 'homepage' %}"><span style="color: #000000; font-size:15px;font-family:Poppins;">English</span></a>
                                   </div>
                                 </div>
                                 <div style="display: flex; margin-left:30px;">
                                   <div>
-                                    <a href=""><span style="color: #000000; font-size:15px;font-family:Poppins;">मराठी</span></a>
+                                    <a href="{% url 'mr' %}"><span style="color: #000000; font-size:15px;font-family:Poppins;">मराठी</span></a>
                                   </div>
                                 </div>
                                 <div style="display: flex;"></div>
@@ -555,7 +555,7 @@ z-index:1111;
                     
                         <div class="container-mob"  >
                           
-                          <div class="stm-header__row stm-header__row_center-1" id="mob-div" style="display: none; flex-direction: column; z-index:40;padding-top:20%;padding-left:10%;overflow:scroll;position: fixed; background: black; height: 100%; width: 270px;">
+                          <div class="stm-header__row stm-header__row_center-1" id="mob-div" style="display: none; flex-direction: column; z-index:40;padding-top:75px;padding-left:35px;overflow:scroll;position: fixed; background: black; height: 100%; width: 270px;">
                             <div class="stm-header__cell-1 stm-header__cell_left-1">
                               
                             </div>
@@ -576,12 +576,12 @@ z-index:1111;
                                     <li><div class="stm-header__cell-1 stm-header__cell_right-1" style="width:100%;display: flex; justify-content: flex-end; align-items:center;">
                                       <div style="display: flex; ">
                                         <div>
-                                          <a href=""><span style="color: white; font-size:15px;font-family:Poppins;">English</span></a>
+                                          <a href="{% url 'homepage' %}"><span style="color: white; font-size:15px;font-family:Poppins;">English</span></a>
                                         </div>
                                       </div>
                                       <div style="display: flex; margin-left:30px;">
                                         <div>
-                                          <a href=""><span style="color: white; font-size:15px;font-family:Poppins;">मराठी</span></a>
+                                          <a href="{% url 'mr' %}"><span style="color: white; font-size:15px;font-family:Poppins;">मराठी</span></a>
                                         </div>
                                       </div>
                                       <div style="display: flex;"></div>
@@ -595,8 +595,8 @@ z-index:1111;
                     
                           <div class="" style="display: flex;">
                             <div style="display: flex;flex-direction:row;width:-webkit-fill-available;justify-content:center;">
+                              <div><a href=""><img style="height:100px;" src="{% static 'GoM.png' %}" alt=""></a></div>
                               <div><a href=""><img src="https://mahnm.in/wp-content/uploads/2020/11/logoweb.png" alt=""></a></div>
-                              <div><a href=""><img src="{% static 'mhgov1.png' %}" alt=""></a></div>
                               <div><a href=""><img src="{% static 'WCD Logo_PNG.png' %}" alt=""></a></div>
                     
                             </div>
