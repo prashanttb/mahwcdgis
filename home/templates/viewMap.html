@@ -229,6 +229,29 @@
         <div>
 
         <form action="map" method="POST" id="cate">
+
+            <div class="tooltips" title="Please select the District">
+                <select name="district" class='form-control' id = "district">
+                  <option value="Select District"> Select District</option>
+                  {% for i in district %}
+                  <option value="{{ i.district }}">{{ i.district }}</option>
+                  {% endfor %}
+                 </select>
+          </div> 
+          
+       
+  
+        <div class="tooltips" title="Please select the Maharashtra's Blocks" id="block">
+          &nbsp;&nbsp;
+              <select name="taluka" class='form-control' id="block_s">
+                <option value="Select Taluka"> Select Taluka </option>
+                {% for i in taluka %}
+                <option value="{{ i.block_n }}">{{ i.block_n }}</option>
+                {% endfor %}
+               </select>
+        </div> 
+
+        
             <div class="dd-1">
                 <select class='form-control mb-2 mt-2' name="category_1" id="category_1">
                     <option value="">Select from Category 1</option>
@@ -310,32 +333,6 @@
             <select name="cate_val3" style="display: none;" class='form-control mb-2 mt-2' id="cate_val3">
                 <option value=""></option>
               </select>
-
-              
-
-              <div class="tooltips" title="Please select the District">
-                <select name="district" class='form-control' id = "district">
-                  <option value="Select District"> Select District</option>
-                  {% for i in district %}
-                  <option value="{{ i.district }}">{{ i.district }}</option>
-                  {% endfor %}
-                 </select>
-          </div> 
-          
-       
-  
-        <div class="tooltips" title="Please select the Maharashtra's Blocks" id="block">
-          &nbsp;&nbsp;
-              <select name="taluka" class='form-control' id="block_s">
-                <option value="Select Taluka"> Select Taluka </option>
-                {% for i in taluka %}
-                <option value="{{ i.block_n }}">{{ i.block_n }}</option>
-                {% endfor %}
-               </select>
-        </div> 
-
-        
-
               
             <button hidden id="cate_submit" type="submit" class="btn btn-primary">submit</button>
         </form>
@@ -423,7 +420,7 @@
   </div> 
     </div> -->
  
-    <button type="submit" id="fs" class="btn btn-primary">Plot Data</button>
+    <button hidden type="submit" id="fs" class="btn btn-primary">Plot Data</button>
 
 </form>
     
@@ -533,6 +530,10 @@ $("#district").change(function(){
     DistrictSelected = $(this).val();
     var optionsList;
     var htmlString = "";
+
+    if(districtLayer){
+        mymap.removeLayer(districtLayer)
+    }
   
     districtLayer = L.tileLayer.wms('https://geoserver2.communitygis.net/geoserver/wms', {
             layers: '	geonode:maharashtra_districts',
@@ -813,6 +814,11 @@ function putWMSLayerdist() {
 
   function putWMSLayertaluka() {
     // clear_tallayer();
+
+    if(talLayer){
+        mymap.removeLayer(talLayer)
+    }
+
     var dist = document.getElementById('district').value;
     var taluka = document.getElementById('block_s').value;
 
@@ -1119,7 +1125,11 @@ function plotData(){
     //for(x in d){
     //    console.log(d[x].fields.latitude)
     //}
-    console.log("pltdata called")
+    if(d==undefined || d == ""){ 
+        alert("No results for this selection")
+        clearAll()
+    }
+    console.log(`pltdata called`)
     replot()
     for(x in d){
         var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon1});
@@ -1168,6 +1178,8 @@ function clearAll(){
     document.getElementById('cate_val3').style.display = 'none';
     $("#cate_val3").html("<option value='"+"'>"+ 'Select' +"</option>");
     document.getElementById('cate_val3').value="";
+    mymap.setView([19.000, 74.999],7);
+
 
 }
 
