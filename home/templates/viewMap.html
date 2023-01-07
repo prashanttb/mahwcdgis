@@ -980,6 +980,14 @@ $(document).ready(
         var serializedData = $(this).serialize();
         //console.log('hjkhjh');
 
+        $(document).ajaxStart(function () {
+            document.getElementById('load').style.display='block';
+            //$("#load").show();
+        }).ajaxStop(function () {
+            document.getElementById('load').style.display='none';
+            //$("#load").hide();
+        });
+
         $.ajax({
             type:"POST",
             url: "{% url 'map' %}",
