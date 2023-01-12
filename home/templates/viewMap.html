@@ -231,8 +231,8 @@
         <form action="map" method="POST" id="cate">
 
             <div class="tooltips" title="Please select the District">
-                <select name="district" class='form-control' id = "district">
-                  <option value="Select District"> Select District</option>
+                <select name="district__in" class='form-control mb-2 mt-2' id = "district">
+                  <option value=""> Select District</option>
                   {% for i in district %}
                   <option value="{{ i.district }}">{{ i.district }}</option>
                   {% endfor %}
@@ -242,9 +242,8 @@
        
   
         <div class="tooltips" title="Please select the Maharashtra's Blocks" id="block">
-          &nbsp;&nbsp;
-              <select name="taluka" class='form-control' id="block_s">
-                <option value="Select Taluka"> Select Taluka </option>
+              <select name="block_n__in" class='form-control mb-2 mt-2' id="block_s">
+                <option value=""> Select Taluka </option>
                 {% for i in taluka %}
                 <option value="{{ i.block_n }}">{{ i.block_n }}</option>
                 {% endfor %}
@@ -253,7 +252,7 @@
 
         
             <div class="dd-1">
-                <select class='form-control mb-2 mt-2' name="category_1" id="category_1">
+                <select class='form-control mb-2 mt-2' name="" id="category_1">
                     <option value="">Select from Category 1</option>
                     <option value="agan_type">Anganwadi Type</option>
                     <option value="agancbuil_field">Anganwadi Construction</option>
@@ -265,15 +264,22 @@
                 </select>
             </div>
 
-            <input type="hidden" name="cate1" value="" id="cate1">
+            <!-- <input type="hidden" name="cate1" value="" id="cate1"> -->
 
-            <select name="cate_val1" style="display: none;" class='form-control mb-2 mt-2' id="cate_val1">
-            <option value=""></option>
-            </select>
+            <!-- <select name="cate_val1" style="display: none;" class='form-control mb-2 mt-2' id="cate_val1">
+                <option value=""></option>
+            </select> -->
+
+            <p id="chk-1">
+                <!-- <input type="checkbox" class="" name="agan_type__in" value="मुख्य" id=""><label class="mx-2" for="">dfsdf</label><br>
+                <input type="checkbox" name="agan_type__in" value="मिनी" id=""><br> -->
+            </p>
+
+            
 
 
             <div class="dd-2">
-                <select class='form-control mb-2 mt-2' name="category_2" id="category_2">
+                <select class='form-control mb-2 mt-2' name="" id="category_2">
                     <option value="">Select from Category 2</option>
                     <option value="child_weigh_material">Does your Anganwadi center have equipment to measure weight of small children ?</option>
                     <option value="child_weigh_mat_working">Is the weight machine for children, working ?</option>
@@ -293,20 +299,25 @@
                     <option value="solar_powersupply">Is your Anganwadi center powered by solar power?</option>
                     <option value="agan_tv">Does your Anganwadi Center have TV?</option>
                     <option value="tv_working">Is the TV in working condition?</option>
-                    <option value="agan_back_gard">Does your Anganwadi center have a courtyard garden?</option>
-                    <option value="space_own_garden">If not, does your Anganwadi center have its own space to create a backyard garden?</option>
+                    <option value="agan_back_field">Does your Anganwadi center have a courtyard garden?</option>
+                    <option value="space_own_field">If not, does your Anganwadi center have its own space to create a backyard garden?</option>
                     
                 </select>
             </div>
 
-            <input type="hidden" name="cate2" value="" id="cate2">
+            <!-- <input type="hidden" name="cate2" value="" id="cate2">
 
             <select name="cate_val2" style="display: none;" class='form-control mb-2 mt-2' id="cate_val2">
                 <option value=""></option>
-              </select>
+              </select> -->
+
+              <p id="chk-2">
+                <!-- <input type="checkbox" class="" name="agan_type__in" value="मुख्य" id=""><label class="mx-2" for="">dfsdf</label><br>
+                <input type="checkbox" name="agan_type__in" value="मिनी" id=""><br> -->
+            </p>
 
             <div class="dd-1">
-                <select class='form-control mb-2 mt-2' name="category_3" id="category_3">
+                <select class='form-control mb-2 mt-2' name="" id="category_3">
                     <option value="">Select from Category 3</option>
                     <option value="vac_agan">Are there vacancies in your Anganwadi Centre?</option>
                     <option value="post_vac">Which of the following posts are vacant?</option>
@@ -314,30 +325,34 @@
                     <option value="post_vac_help">Which of the following posts are vacant?/Asst</option>
                     <option value="pro_fill_agan_post">Has the process of filling vacancies in this Anganwadi Center started? Vacancies ?/help</option>
                     <option value="child0_6monage">What is the total number of children aged 0-6 months in your Anganwadi?</option>
-                    <option value="child6mon_3yr">What is the total number of children aged 6 months to 3 years in your Anganwadi?</option>
-                    <option value="child3_6yrs">What is the total number of children aged 3 to 6 years in your Anganwadi?</option>
+                    <option value="child6mon_field">What is the total number of children aged 6 months to 3 years in your Anganwadi?</option>
+                    <option value="child3_6y">What is the total number of children aged 3 to 6 years in your Anganwadi?</option>
                     <option value="tot_no_child">Total number of children</option>
-                    <option value="preg_moth_agan">What is the total number of pregnant mothers in your Anganwadi?</option>
-                    <option value="brestfeed_moth_agan">What is the total number of lactating mothers in your Anganwadi?</option>
-                    <option value="preg_lact_moth">Total number of pregnant and lactating mothers</option>
+                    <option value="preg_moth_field">What is the total number of pregnant mothers in your Anganwadi?</option>
+                    <option value="brestfeed_field">What is the total number of lactating mothers in your Anganwadi?</option>
+                    <option value="preg_lact_field">Total number of pregnant and lactating mothers</option>
                     <option value="child_weigh_meas_agan_mar22">How many registered children have been weighed in your Anganwadi center in March 2022?</option>
                     <option value="child_heigh_meas_agan_mar22">How many registered children have their height measured in March 2022 in your Anganwadi Centre?</option>
                     <option value="no_suv_child_agan_Jan_mar22">What is the number of severely underweight (SUW) children registered in your Anganwadi center during January 2022-March 2022?</option>
                     <option value="no_suv_child_recthr_jan_mar22">What is the number of severely underweight (SUW) infants who received additional THR during January 2022-March 2022 in your Anganwadi center?</option>
-                    <option value="child_sam_agan_jan_mar22">What is the number of acutely malnourished (SAM) children registered in your Anganwadi center during January 2022-March 2022?</option>
+                    <option value="child_sam_field">What is the number of acutely malnourished (SAM) children registered in your Anganwadi center during January 2022-March 2022?</option>
 
                 </select>
             </div>
-            <input type="hidden" name="cate3" value="" id="cate3">
+            <!-- <input type="hidden" name="cate3" value="" id="cate3">
 
             <select name="cate_val3" style="display: none;" class='form-control mb-2 mt-2' id="cate_val3">
                 <option value=""></option>
-              </select>
+              </select> -->
+
+              <p id="chk-3">
+                <!-- <input type="checkbox" class="" name="agan_type__in" value="मुख्य" id=""><label class="mx-2" for="">dfsdf</label><br>
+                <input type="checkbox" name="agan_type__in" value="मिनी" id=""><br> -->
+            </p>
               
             <button hidden id="cate_submit" type="submit" class="btn btn-primary">submit</button>
         </form>
     </div>
-    <hr>
 
 
     <form method="POST" id="post-form">
@@ -363,7 +378,6 @@
       </div>  -->
 
 
-      <hr>
       <div class="selected_dd">
 
         <input type="hidden" name="cate1" value="" id="cate1">
@@ -657,7 +671,8 @@ $("#district").change(function(){
   
   // console.log(optionsList)
     if(optionsList!=undefined){
-        for(var i = 0; i < optionsList.length; i++){
+        htmlString = htmlString+"<option value=''> Select Taluka </option>";
+        for(var i = 1; i < optionsList.length; i++){
         htmlString = htmlString+"<option value='"+ optionsList[i] +"'>"+ optionsList[i] +"</option>";
         }
     }
@@ -987,7 +1002,7 @@ $(document).ready(
         //console.log('hjkhjh');
 
         $(document).ajaxStart(function () {
-            document.getElementById('load').style.display='block';
+            document.getElementById('load').style.display='flex';
             //$("#load").show();
         }).ajaxStop(function () {
             document.getElementById('load').style.display='none';
@@ -1022,8 +1037,9 @@ $(document).ready(
                 //console.log(data['c1'])
                 if(data['c1']!=""){
                     document.getElementById('cate1').value = document.getElementById("category_1").value
-                    //console.log(document.getElementById('cate1').value)
-                    document.getElementById('cate_val1').style.display = 'block';
+                    // console.log(document.getElementById('cate1').value)
+                    // document.getElementById('cate_val1').style.display = 'block';
+                    /*
                     var htmlString="<option value=''>"+ 'Select' +"</option>";
                     
                     data.c1.forEach(e=>{
@@ -1031,11 +1047,25 @@ $(document).ready(
                         htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
                     })
                     $("#cate_val1").html(htmlString);
+                    */
+
+                    var htm = "";
+                    data.c1.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("category_1").value+"__in' value="+e[k]+" id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    document.getElementById('chk-1').innerHTML=htm
+                    $('.chkc-1').click(function(){
+                        document.getElementById('cate_submit').click();
+                    })
                 }else{
+                    document.getElementById('chk-1').innerHTML=""
+                    /*
                     document.getElementById('cate_val1').style.display = 'none';
                     $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
                     document.getElementById('cate_val1').value="";
                     document.getElementById('cate_val1').dispatchEvent(new Event('change'));
+                    */
                 }  
 
             }
@@ -1058,7 +1088,8 @@ $(document).ready(
                 if(data['c2']!=""){
                     document.getElementById('cate2').value = document.getElementById("category_2").value
                     //console.log(document.getElementById('cate1').value)
-                    document.getElementById('cate_val2').style.display = 'block';
+                    // document.getElementById('cate_val2').style.display = 'block';
+                    /*
                     var htmlString="<option value=''>"+ 'Select' +"</option>";
                     
                     data.c2.forEach(e=>{
@@ -1066,11 +1097,24 @@ $(document).ready(
                         htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
                     })
                     $("#cate_val2").html(htmlString);
+                    */
+                    var htm = "";
+                    data.c2.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-2' name='"+document.getElementById("category_2").value+"__in' value="+e[k]+" id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    document.getElementById('chk-2').innerHTML=htm
+                    $('.chkc-2').click(function(){
+                        document.getElementById('cate_submit').click();
+                    })
                 }else{
+                    document.getElementById('chk-2').innerHTML=""
+                    /*
                     document.getElementById('cate_val2').style.display = 'none';
                     $("#cate_val2").html("<option value='"+"'>"+ 'Select' +"</option>");
                     document.getElementById('cate_val2').value="";
                     document.getElementById('cate_val2').dispatchEvent(new Event('change'));
+                    */
                 }  
                 console.log('end')
                 
@@ -1081,20 +1125,20 @@ $(document).ready(
 
     $('#category_3').on('change',function(){
         var category_3 = $('#category_3').val()
-        console.log()
         $.ajax({
             type:"GET",
             url: "{% url 'category_3' %}",
             dataType: 'json',
             data: {category_3},
             success: function(data){
-                //console.log(data["data"])
+                console.log(data)
                 //d = JSON.parse(data["data"])
                 //console.log(data['c1'])
                 if(data['c3']!=""){
                     document.getElementById('cate3').value = document.getElementById("category_3").value
                     //console.log(document.getElementById('cate1').value)
-                    document.getElementById('cate_val3').style.display = 'block';
+                    // document.getElementById('cate_val3').style.display = 'block';
+                    /*
                     var htmlString="<option value=''>"+ 'Select' +"</option>";
                     
                     data.c3.forEach(e=>{
@@ -1102,11 +1146,24 @@ $(document).ready(
                         htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
                     })
                     $("#cate_val3").html(htmlString);
+                    */
+                    var htm = "";
+                    data.c3.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-3' name='"+document.getElementById("category_3").value+"__in' value="+e[k]+" id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    document.getElementById('chk-3').innerHTML=htm
+                    $('.chkc-3').click(function(){
+                        document.getElementById('cate_submit').click();
+                    })
                 }else{
+                    document.getElementById('chk-3').innerHTML=""
+                    /*&
                     document.getElementById('cate_val3').style.display = 'none';
                     $("#cate_val3").html("<option value='"+"'>"+ 'Select' +"</option>");
                     document.getElementById('cate_val3').value="";
                     document.getElementById('cate_val3').dispatchEvent(new Event('change'));
+                    */
                 }  
 
             }
@@ -1148,36 +1205,39 @@ function clearAll(){
     if(districtLayer){
         mymap.removeLayer(districtLayer)
     }
-    document.getElementById('district').value = "Select District";
+    document.getElementById('district').value = "";
     if(talLayer){
         mymap.removeLayer(talLayer)
     }
-    document.getElementById('block_s').value = "Select Taluka";
+    document.getElementById('block_s').value = "";
 
-    var htm = '<option value="Select Taluka"> Select Taluka </option>'
+    var htm = '<option value=""> Select Taluka </option>'
                 '{% for i in taluka %}'
                 htm=htm+'<option value='+'{{ i.block_n }}'+'>{{ i.block_n }}</option>'
                 '{% endfor %}'
             $('#block_s').html(htm)
 
     document.getElementById('category_1').value=""
-    document.getElementById('cate1').value=""
+    //document.getElementById('cate1').value=""
+    document.getElementById('chk-1').innerHTML=""
     document.getElementById('category_2').value=""
-    document.getElementById('cate2').value=""
+    //document.getElementById('cate2').value=""
+    document.getElementById('chk-2').innerHTML=""
     document.getElementById('category_3').value=""
-    document.getElementById('cate3').value=""
+    //document.getElementById('cate3').value=""
+    document.getElementById('chk-3').innerHTML=""
 
-    document.getElementById('cate_val1').style.display = 'none';
-    $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
-    document.getElementById('cate_val1').value="";
+    //document.getElementById('cate_val1').style.display = 'none';
+    //$("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
+    //document.getElementById('cate_val1').value="";
 
-    document.getElementById('cate_val2').style.display = 'none';
-    $("#cate_val2").html("<option value='"+"'>"+ 'Select' +"</option>");
-    document.getElementById('cate_val2').value="";
+    //document.getElementById('cate_val2').style.display = 'none';
+    //$("#cate_val2").html("<option value='"+"'>"+ 'Select' +"</option>");
+    //document.getElementById('cate_val2').value="";
 
-    document.getElementById('cate_val3').style.display = 'none';
-    $("#cate_val3").html("<option value='"+"'>"+ 'Select' +"</option>");
-    document.getElementById('cate_val3').value="";
+    //document.getElementById('cate_val3').style.display = 'none';
+    //$("#cate_val3").html("<option value='"+"'>"+ 'Select' +"</option>");
+    //document.getElementById('cate_val3').value="";
     mymap.setView([19.000, 74.999],7);
 
 
