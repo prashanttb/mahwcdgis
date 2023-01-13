@@ -16,27 +16,36 @@ def viewMap(request):
         # angan_type = request.POST.get('agan_type')
         # constr = request.POST.get('constr')
         # sitangan = request.POST.get('sitangan')
-        cate1 = request.POST.get('cate1')
-        cate2 = request.POST.get('cate2')
-        cate3 = request.POST.get('cate3')
+        # cate1 = request.POST.get('cate1')
+        # cate2 = request.POST.get('cate2')
+        # cate3 = request.POST.get('cate3')
         
-        cate_val1 = request.POST.get('cate_val1')
-        cate_val2 = request.POST.get('cate_val2')
-        cate_val3 = request.POST.get('cate_val3')
+        # cate_val1 = request.POST.get('cate_val1')
+        # cate_val2 = request.POST.get('cate_val2')
+        # cate_val3 = request.POST.get('cate_val3')
         
-        print(request.POST," -")
-         
-        filters = {}
-        if dist!="Select District":
-            filters['district'] = dist
-        if taluka!="Select Taluka":
-            filters['block_n'] = taluka
-        if cate1!="" and cate_val1!="":
-            filters[cate1]=cate_val1
-        if cate2!="" and cate_val2!="":
-            filters[cate2]=cate_val2
-        if cate3!="" and cate_val3!="":
-            filters[cate3]=cate_val3
+        # print(dict(request.POST)," -")
+        # print(request.POST.getlist('agan_type__in')," -")
+        
+        
+        y={}
+        for k,v in dict(request.POST).items():
+            if(v[0]!=""):
+                y[k]=v
+        print(y," pppp")
+        print(RuralInfraAwcAcEnglishconverted.objects.filter(**y).count(),"   ssss")
+        district =  RuralInfraAwcAcEnglishconverted.objects.filter(**y)
+        # filters = {}
+        # if dist!="":
+        #     filters['district'] = dist
+        # if taluka!="":
+        #     filters['block_n'] = taluka
+        # # if cate1!="" and cate_val1!="":
+        # #     filters[cate1]=cate_val1
+        # if cate2!="" and cate_val2!="":
+        #     filters[cate2]=cate_val2
+        # if cate3!="" and cate_val3!="":
+        #     filters[cate3]=cate_val3
         # if angan_type!="":
         #     filters['agan_type'] = angan_type
         # if constr!="":
@@ -44,9 +53,9 @@ def viewMap(request):
         # if sitangan!="":
         #     filters['child_sitagan'] = sitangan
 
-        print("sjdaajskd ",filters)
+        # print("sjdaajskd ",filters)
         
-        district =RuralInfraAwcAcEnglishconverted.objects.filter(**filters)
+        # district =RuralInfraAwcAcEnglishconverted.objects.filter(**filters)
         # district = RuralInfraAwcAcEnglishconverted.objects.filter(district='')
         district = serializers.serialize('json', district)
         context={"data":district}
@@ -54,7 +63,8 @@ def viewMap(request):
     
     else:
         awc = RuralInfraAwcAcEnglishconverted.objects.filter(agan_type='मुख्य',project='Yavatmal')
-        # print(awc)
+        # awcr = RuralInfraAwcAcEnglishconverted.objects.filter(agan_type__in= ['मुख्य',"मिनी"],district='Akola').count()
+        # print(awcr)
         district = RuralInfraAwcAcEnglishconverted.objects.values('district').order_by('district').distinct()
         taluka = RuralInfraAwcAcEnglishconverted.objects.values('block_n').order_by('block_n').distinct()
         context = {'awc': awc, 'district':district,'taluka':taluka}
