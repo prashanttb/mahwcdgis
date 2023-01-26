@@ -152,3 +152,6 @@ def about_p_mr(request):
 
 def contact_us_mr(request):
     return render(request,'mr/contact_us.html')
+
+def about_us(request):
+    return render(request, 'about_us.html')
