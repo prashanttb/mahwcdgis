@@ -1,0 +1,640 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+	<link rel='stylesheet' id='wp-block-library-css'  href='{% static "wp-includes/css/dist/block-library/style.min.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='{% static "wp-content/plugins/contact-form-7/includes/css/styles.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='rs-plugin-settings-css'  href='{% static "wp-content/plugins/revslider/public/assets/css/rs6.css" %}' type='text/css' media='all' />
+<style id='rs-plugin-settings-inline-css' type='text/css'>
+#rs-demo-id {}
+</style>
+<link rel='stylesheet' id='stm-stmicons-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_advisory-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/advisory/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_app-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/app/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_beauty-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/beauty/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_book-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/book/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_businesstwo-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/businesstwo/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_church-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/church/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_company-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/company/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_construction-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/construction/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_constructiontwo-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/constructiontwo/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_consulting-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/consulting/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_corporate-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/corporate/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_creativethree-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/creativethree/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_creativetwo-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/creativetwo/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_digital-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/digital/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_factory-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/factory/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_feather-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/feather/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_finance-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/finance/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_food-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/food/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_furniture-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/furniture/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_healthcoach-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/healthcoach/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_hosting-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/hosting/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_hotel-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/hotel/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_icomoon-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/icomoon/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_lawyer-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/lawyer/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_linear-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/linear/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_logistics-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/logistics/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_logisticstwo-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/logisticstwo/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_magazine-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/magazine/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_medicall-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/medicall/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_medicaltwo-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/medicaltwo/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_personal_blog-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/personal_blog/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_politician-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/politician/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_psychologist-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/psychologist/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_renovation-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/renovation/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_rental-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/rental/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_software-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/software/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_sports_complex-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/sports_complex/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_startup-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/startup/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_store-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/store/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_taxi-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/taxi/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_vicons-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/vicons/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm-stmicons_viral-css'  href='{% static "wp-content/uploads/stm_fonts/stmicons/viral/stmicons.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm_megamenu-css'  href='{% static "wp-content/plugins/stm-configurations/megamenu/assets/css/megamenu.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='vlp-public-css'  href='{% static "wp-content/plugins/visual-link-preview/dist/public.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='wpfd-search_filter-css'  href='{% static "wp-content/plugins/wp-file-download/app/site/assets/css/search_filter.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='{% static "wp-includes/css/dashicons.min.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='trp-language-switcher-style-css'  href='{% static "wp-content/plugins/translatepress-multilingual/assets/css/trp-language-switcher.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='js_composer_front-css'  href='{% static "wp-content/plugins/js_composer/assets/css/js_composer.min.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='stm_default_google_font-css'  href='https://fonts.googleapis.com/css?family=Poppins%3A100%2C200%2C300%2C400%2C400i%2C500%2C600%2C700%2C800%2C900%7CMontserrat%3A100%2C200%2C300%2C400%2C400i%2C500%2C600%2C700%2C800%2C900&#038;ver=3.2.5#038;subset=latin%2Clatin-ext" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-theme-styles-css'  href='{% static "wp-content/themes/pearl/assets/css/app.css" %}' type='text/css' media='all' />
+<style id='pearl-theme-styles-inline-css' type='text/css'>
+  
+.stm_titlebox:after {
+            background-color: #f00;
+        }.stm_titlebox .stm_titlebox__title,
+        .stm_titlebox .stm_titlebox__author,
+        .stm_titlebox .stm_titlebox__categories
+        {
+            color:  #f00 !important;
+        }.stm_titlebox .stm_titlebox__subtitle {
+            color: #f00;
+        }.stm_titlebox .stm_titlebox__inner .stm_separator {
+            background-color: #f00 !important;
+        }
+</style>
+<link rel='stylesheet' id='pearl-theme-custom-styles-css'  href='{% static "wp-content/uploads/stm_uploads/skin-custom.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='fontawesome-css'  href='{% static "wp-content/themes/pearl/assets/vendor/font-awesome.min.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='vc_font_awesome_5_shims-css'  href='{% static "wp-content/plugins/js_composer/assets/lib/bower/font-awesome/css/v4-shims.min.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='vc_font_awesome_5-css'  href='{% static "wp-content/plugins/js_composer/assets/lib/bower/font-awesome/css/all.min.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-buttons-style-css'  href='{% static "wp-content/themes/pearl/assets/css/buttons/styles/style_3.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-sidebars-style-css'  href='{% static "wp-content/themes/pearl/assets/css/sidebar/style_1.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-forms-style-css'  href='{% static "wp-content/themes/pearl/assets/css/form/style_3.css9" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-blockquote-style-css'  href='{% static "wp-content/themes/pearl/assets/css/blockquote/style_3.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-post-style-css'  href='{% static "wp-content/themes/pearl/assets/css/post/style_1.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-pagination-style-css'  href='{% static "wp-content/themes/pearl/assets/css/pagination/style_3.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-list-style-css'  href='{% static "wp-content/themes/pearl/assets/css/lists/style_10.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-tabs-style-css'  href='{% static "wp-content/themes/pearl/assets/css/tabs/style_2.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-tour-style-css'  href='{% static "wp-content/themes/pearl/assets/css/tour/style_1.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-accordions-style-css'  href='{% static "wp-content/themes/pearl/assets/css/accordion/style_2.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-header-style-css'  href='{% static "wp-content/themes/pearl/assets/css/header/style_1.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-footer-style-css'  href='{% static "wp-content/themes/pearl/assets/css/footer/style_1.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='pearl-titlebox-style-css'  href='{% static "wp-content/themes/pearl/assets/css/titlebox/style_1.css" %}' type='text/css' media='all' />
+<script type='text/javascript' src='{% static "wp-includes/js/jquery/jquery.min.js" %}' id='jquery-core-js'></script>
+<script type='text/javascript' src='{% static "wp-includes/js/jquery/jquery-migrate.min.js" %}' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='{% static "wp-content/plugins/revslider/public/assets/js/rbtools.min.js" %}' id='tp-tools-js'></script>
+<script type='text/javascript' src='{% static "wp-content/plugins/revslider/public/assets/js/rs6.min.js" %}' id='revmin-js'></script>
+<script type='text/javascript' src='{% static "wp-content/plugins/sticky-menu-or-anything-on-scroll/assets/js/jq-sticky-anything.min.js" %}' id='stickyAnythingLib-js'></script>
+<script type='text/javascript' src='{% static "wp-content/plugins/stm-configurations/megamenu/assets/js/megamenu.js" %}' id='stm_megamenu-js'></script>
+<script type='text/javascript' src='{% static "wp-content/themes/pearl/assets/vendor/autosize.min.js" %}' id='autosize.js-js'></script>
+<script type='text/javascript' src='{% static "wp-content/themes/pearl/assets/js/materialForm.js" %}' id='pearl_material_form-js'></script>
+<style type="text/css">
+    img.wp-smiley,
+    img.emoji {
+        display: inline !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: 1em !important;
+        width: 1em !important;
+        margin: 0 .07em !important;
+        vertical-align: -0.1em !important;
+        background: none !important;
+        padding: 0 !important;
+    }
+    </style>
+    <style type="text/css" id="wp-custom-css">
+        .attachment-full  {
+width: 100%!important;
+}
+
+.stm-header__row_color_center {
+padding-top: 12px;
+padding-bottom: 12px;
+color: #ffffff;
+}
+
+.stm_titlebox {
+background-position: 50% 30% !important;
+}
+
+.stm_header_style_1 .stm_mobile__header {
+
+    padding-bottom: 0px !important;
+}
+.stm_layout_business.stm_header_style_1 .stm_titlebox {
+margin-top: 0px !important ; }
+
+.pearl_arrow_top {
+
+left: 4% !important;
+
+}
+
+.stm-footer {
+z-index:1111 !important;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading_font {
+font-family: 'Poppins' !important;
+color: #23282d;
+font-weight: 800;
+letter-spacing: 0px;
+}
+.menu-item-type-custom:hover {
+background-color:#fff;
+}
+.stm_staff__socials {
+display:none;
+}
+
+.menu-item-type-custom:hover{
+background-color:#fff;
+}
+.menu-item-type-post_type:hover {
+background-color:#fff;
+}
+.btn_primary span {
+color:#fff;
+}
+
+.btn_primary {
+border:none;
+padding: 10px;
+}
+
+.vc_custom_1492162251965 .wpb_wrapper h3 {
+color:#fff!important;
+}
+.vc_custom_1492162256127 .wpb_wrapper h3 {
+color:#fff!important;
+}
+
+.vc_custom_1492170545778 .wpb_wrapper h3 {
+color:#fff!important;
+}
+.stm_iconbox_style_1.stm_flipbox .stm_flipbox__front {
+border-width: 1px;
+border-style: solid;
+border-radius: 2px;
+background-color: #fff;
+}
+
+.menu-item {
+padding: 10px 0px;
+}
+.current-menu-ancestor {
+background-color:#fff;
+
+}
+.vc_custom_1492161912718 .wpb_wrapper .wtc {
+height: 375px;
+}
+.stm-navigation > ul > .menu-item > a {
+color:#000;
+}
+
+.stm-navigation > ul > li ul li :hover ~ .stm-navigation > ul > .sub-menu > .menu-item > a {
+color:#000!important;
+}
+
+.current-menu-ancestor a {
+color:#50318d;
+}
+
+.menu-item-3952:hover ~#menu-item-3986 a {
+color:#fff!important;
+}
+.mbc, .mbc_h:hover, .mbc_b:before, .mbc_b_h:hover:before, .mbc_a:after, .mbc_a_h:hover:after, .mbc_h.active, mark, .stm_titlebox, .button_3d.white:hover span:before, .button_3d.white:focus span:before, .tparrows.persephone:hover, .owl-nav .owl-prev:hover, .owl-nav .owl-next:hover, .stm_testimonials .owl-dots .owl-dot.active span, .stm_slider_style_2 .owl-dots .owl-dot.active, .stm_owl_dots .owl-dots .owl-dot.active, .stm_preloader__element:before, .vc_grid-loading:before, div.wpcf7 .ajax-loader:after, .stm_pagination_style_1 ul.page-numbers .page-numbers:hover, .stm_pagination_style_1 ul.page-numbers .page-numbers.current, .stm_pagination_style_19 ul.page-numbers .page-numbers:hover, .stm_pagination_style_19 ul.page-numbers .page-numbers.current, .stm_pagination_style_18 ul.page-numbers .page-numbers:hover, .stm_pagination_style_18 ul.page-numbers .page-numbers.current, .search-form .form-control:focus + button, .stm-search_style_2 .search-form .form-control:focus + button:after, .widget.widget_recent_entries ul li:hover:before, .widget_tag_cloud .tagcloud a:hover, .stm_post__tags a:hover, .stm_partners.stm_partners_style_2 .stm_partners__single:hover .stm_partners__title:before, .vc_tta-panel.vc_active .vc_tta-panel-title > a, .vc_tta.vc_tta-tabs .vc_active .vc_tta-title-text:before, .stm_projects_grid__loading:before, .stm-navigation__line_top ul > li:before, .stm-navigation__line_bottom ul > li:before, .stm_header_style_3 .stm-navigation .sub-menu li:not(.active):hover, .stm_services_style_2 .stm_loop__single:hover .stm_services__title, .stm_header_style_1 .stm-navigation ul > li > ul > li:hover > a, .stm_header_style_1 .stm-navigation ul > li > ul > li.current-menu-item > a, .stm_header_style_13 .stm-navigation ul > li > ul > li:hover > a, .stm_header_style_13 .stm-navigation ul > li > ul > li.current-menu-item > a, .stm_header_style_3 .stm-offices .stm-switcher__list .stm-switcher__option:hover, .stm_video.stm_video_style_2 .stm_playb:after, .stm_widget_search.style_1 .widget.widget_search .search-form button, .stm_form_style_2 [type="submit"], .stm_load_posts span.preloader, .stm_pagination_style_2 ul.page-numbers .page-numbers:not(.current):hover, .btn_loading span.preloader, .atcb-item-link:hover, .stm_input_wrapper.active:before, .stm_header_style_3 .dropdown-list li a:hover, .stm_lists_style_1 .wpb_text_column ul li:before, .stm_lists_style_7 .wpb_text_column ul li:before, .stm_post_type_list_style_2 .stm_post_type_list__single:hover, .stm_post_type_list_style_2 .stm_post_type_list__single.active, .stm_pagination_style_3 ul.page-numbers .page-numbers.current:after, .stm_pagination_style_3 ul.page-numbers li .page-numbers:hover:after, .stm_pagination_style_9 ul.page-numbers .page-numbers.current:after, .stm_pagination_style_9 ul.page-numbers li .page-numbers:hover:after, .stm_projects_grid_style_2 .stm_projects_carousel__item:hover .mbc_b_h:before, .stm_tabs_style_2 .vc_tta.vc_tta-tabs .vc_tta-tabs-list .vc_tta-tab.vc_active a span.vc_tta-title-text, .stm_post_style_1 .stm_loop__list .stm_loop__single:hover h3:after, .stm_icon.stm_icon_styled_bg:before, .stm_pagination_style_5 .owl-dots .owl-dot.active, .stm_header_style_4 .stm-navigation > ul > li > .sub-menu > li:hover, .stm_widget_categories.style_3 ul li:before, .stm_pagination_style_5 ul.page-numbers li.stm_page_num .page-numbers:hover, .stm_pagination_style_6 ul.page-numbers li.stm_page_num .page-numbers:hover, .stm_pagination_style_5 ul.page-numbers li.stm_page_num .page-numbers.current, .stm_pagination_style_6 ul.page-numbers li.stm_page_num .page-numbers.current, .stm_blockquote_style_5 blockquote, .stm_services_style_4 .stm_services__icon:before, .stm_carousel_style_4 .owl-dots .owl-dot.active span, .stm_iconbox.stm_iconbox_style_6:before, .stm_widget_search.style_3 button[type="submit"], .tag_cloud_style_2 .tagcloud a:hover, .stm_single_post_style_4 .stm_single_post__tags a:hover, .stm_staff_container_grid.style_5 .stm_staff:before, .stm_tabs_style_4 .vc_tta-tabs .vc_tta-tab.vc_active, .stm_tabs_style_4 .vc_tta.vc_tta-tabs .vc_tta-tabs-list .vc_tta-tab:before, .stm_tabs_style_5 .vc_tta.vc_tta-tabs .vc_tta-tabs-list .vc_tta-tab.vc_active:before, .slick-dots li.slick-active:before, .stm_gmap_wrapper.style_2 .gmap_addresses .addresses_wr, .stm_video_style_4:hover .stm_playb:after, .stm_opening_hours_table_style_1 .day .time_to_closing, .stm_projects_grid_style_4 .stm_projects_grid__sorting .stm_projects_carousel__tab a:after, .ui-timepicker-standard .ui-state-hover, .ui-datepicker .ui-state-default.ui-state-hover, .stm_testimonials_style_6 .stm_testimonials__item:hover:before, .mejs-time-current, .mejs-horizontal-volume-current, .stm_buttons_style_7 .btn.btn_solid:hover, .stm_staff_container_grid.style_6 .stm_staff__socials > li > a:hover, .audio-bodong span, .stm_pagination_style_7 ul.page-numbers .page-numbers:not(.current):hover, .stm_video.stm_video_style_5 .stm_playb:after, .stm_projects_grid_style_5 .stm_gallery_masonry__link:hover:after, .stm_icontext_style_4:hover .stm_icontext__icon, .stm_posts_list_style_3 .stm_posts_list_single:hover .stm_posts_list_single__body:before, .stm_post_style_8.stm_post_view_grid .stm_loop__grid .stm_posts_list_single:hover .stm_posts_list_single__body:before, .stm_pagination_style_8 ul.page-numbers li .page-numbers:hover, .stm_staff_cta_grid_style_6, .stm_single_events_style_3 .stm_event_wide_details .btn, .stm_slider_style_5 .owl-nav .owl-prev, .stm_slider_style_5 .owl-nav .owl-next, .stm_buttons_style_7 button[type="submit"]:not(.btn):hover, .open-table-widget-datepicker .picked, .stm_open_table_style_1 .selectric-scroll li.selected, .stm_pagination_style_9 .owl-dots .owl-dot.active span, .stm_posts_list_style_4 .stm_posts_list_single__body:before, .services_price_list_style_3 .service__cost, .owl-dots .owl-dot.active, .stm_play, .stm_header_style_3 .stm-navigation__default > ul > li .sub-menu > li.current-menu-item, .stm_header_style_4 .stm-navigation__default > ul > li .sub-menu > li.current-menu-item, .stm_staff_grid_style_1 .stm_staff__image .stm_staff__socials li:hover:before, .stm_staff_grid_style_3 .stm_staff__image .stm_staff__socials li:hover:before, .stm_pagination_style_6 .slick-dots li.slick-active:before, .stm_events_list_style_5 .hasButton:after, .stm_services_text_carousel_style_2 .stm_services_carousel .item .item_thumbnail .content a:hover, .stm_iconbox_style_9 .stm_iconbox__text h5 span:after, .stm_events_list_style_6 .stm_event_single_list .hasButton:after, .stm-navigation__line_middle>ul>li:before, .stm_post_style_10 .stm_loop__grid .stm_loop__single .postinfo_grid:after, .stm_post_style_10 .stm_loop__list .stm_loop__single .postinfo_grid:after, .stm_post_style_10 .stm_single_post_style_10 .stm_post_panel .stm_single_post__tags a:hover, .stm_post_style_10 .stm_single_stm_events .stm_markup__content .stm_single_event__panel .stm_single_event__categories a:hover, .stm_header_style_10 .stm-navigation.stm-navigation__default ul li > .sub-menu > li a:hover, .stm_projects_grid_style_7 .stm_projects_carousel__item .stm_projects__links a:hover, .pearl_wp_link_pages>.stm_page_num, .stm_iconbox_style_10 .stm_iconbox__icon:after, .stm_video_style_6:hover .stm_playb:after, .stm_headings_line_right h1:after, .stm_headings_line_right .h1:after, .stm_headings_line_right h2:after, .stm_headings_line_right .h2:after, .stm_headings_line_right h3:after, .stm_headings_line_right .h3:after, .stm_headings_line_right h4:after, .stm_headings_line_right .h4:after, .stm_headings_line_right h5:after, .stm_headings_line_right .h5:after, .stm_headings_line_right h6:after, .stm_headings_line_right .h6:after, .woocommerce .stm_woo_products .owl-prev, .woocommerce .stm_woo_products .owl-next, .woocommerce .special_offer_product__meta_box .special_offer_product__countdown .count_meta .count_meta_info, .stm_footer_layout_3 .stm-footer__bottom .stm-socials__icon:hover, .vc_images_carousel .vc_carousel-indicators li.vc_active, .stm_slider_style_8 .stm_slide__button a:hover, .stm_single_post_video_format:hover .play, .stm_single_post_video_format:hover .play:before, .stm_single_post_video_format:hover .play:after, .stm_pagination_style_14 .owl-controls .owl-dot span:after, .stm_pagination_style_12 ul.page-numbers li .page-numbers.current:before, .stm_shop_layout_store .cart-collaterals .wc-proceed-to-checkout .checkout-button, .stm_shop_layout_store.woocommerce .button, .stm_shop_layout_store.woocommerce .checkout #order_review #payment .place-order #place_order, .stm_shop_layout_store .woocommerce .button, .stm_shop_layout_store .woocommerce .checkout #order_review #payment .place-order #place_order, .stm_layout_store .stm-cart_style_1 .mini-cart .mini-cart__actions a, .stm_shop_layout_store.single-product div.product .summary.entry-summary .single_add_to_cart_button, .stm_woo_category_link_box .stm_woo_category_link:before, .stm_woo_category_link_box .stm_woo_category_link:after, .stm_custom_heading__side_line, .stm_header_style_17.single-stm_products .stm-header__row_color_center:before, .single-stm_products .tab-content .products_certificate_top h3:after, .stm_pagination_style_15 ul.page-numbers .page-numbers.current, .stm_pagination_style_15 ul.page-numbers .stm_page_num a:hover, .stm_testimonials_style_17 .image_dots .owl-dot, .stm_projects_carousel_dark.stm_projects_carousel .owl-dots .owl-dot, .stm_pricing-table_style_5 .stm_pricing-table__footer .btn:hover, .stm_posttimeline_style_2 .stm_posttimeline__year.active span, .stm_staff_list_style_6 .stm_staff__socials li a:hover, body.page-ajax-driven #wrapper:before, .stm_projects_grid_style_8 .stm_projects_carousel__tab a:after, .stm_layout_company .stm_slider_style_10.stm_slider .stm_slide__button .btn:hover, .stm_slider_thumbs_container ul.stm_slider_thumbs_list li.stm_slide_thumb.active, .stm_header_style_19 .stm-navigation__default > ul > li ul li > a:hover, .stm_pagination_style_17 .page-numbers .page-numbers.current, .stm_projects_grid_style_9 .stm_projects_grid__sorting li a:after, .stm_categories_tabs_style_2 ul.nav-tabs li a:after, .stm_iconbox_style_12 .stm_iconbox__icon, .stm_header_style_20 .stm-navigation__default .sub-menu li:hover, .stm_header_style_20 .stm-navigation__default .sub-menu li.current-menu-item, .stm_video_style_10 .stm_playb, .stm_pagination_style_20 .owl-dots .owl-dot.active span, .stm_services_style_12 .stm_services__content:before, .stm_iconbox_style_14.stm_iconbox:after, .stm_video.stm_video_style_11 .stm_playb, .stm_video.stm_video_style_11 .stm_video_title:after, .stm_upcoming_events_style_2 .stm_upcoming_events_first .stm_upcoming_event__counter-container:before, .stm_infobox_style_13 .stm_infobox__image:after, .btn_primary.btn_solid, .btn_primary.btn_divider .btn__icon:after, .btn_third.btn_solid:hover, .btn_primary.btn_solid:hover .btn__icon:after, .btn_primary.btn_outline .btn__icon:after, .btn_primary.btn_outline:hover, .stm_slider_style_2.stm_slider .stm_slide__button a:hover, body .btn_solid.btn_primary_hover:hover, .stm_layout_food .post_link a:hover::after {
+background-color: #50318c !important;
+color:#fff!important
+}
+
+
+
+.alignleft {
+float: left;
+margin: 5px 20px 20px 0;
+width: 50px;
+}
+.stm-header__element.object549 a {
+padding: 10px 10px;
+}
+.stm-header__element.object549 a:hover {
+color:#fff!important;
+text-decoration:none;
+background-color:#50318d;
+}
+
+.stm_staff__job {
+font-size:11px!important;
+}
+
+.stm_mobile__header {
+padding:0px;
+}
+
+.stm_staff_grid_style_1 {
+margin-bottom: 27px;
+min-height: 409px!important;
+}
+
+.stm_iconbox_style_3 .stm_iconbox__text h5 {
+margin-bottom: 14px;
+letter-spacing: 0;
+line-height: 21px;
+}
+
+
+</style>
+    <style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1505735318733{margin-top: -31px !important;}.vc_custom_1494592041063{margin-top: 87px !important;}.vc_custom_1608208222315{background-color: rgba(12,12,12,0.49) !important;*background-color: rgb(12,12,12) !important;}.vc_custom_1618762166695{padding-top: 50px !important;}.vc_custom_1608280718242{padding-top: 40px !important;padding-bottom: 40px !important;background-color: #f2f2f2 !important;}.vc_custom_1606673326532{margin-bottom: 20px !important;}.vc_custom_1505711608143{border-radius: 2px !important;}.vc_custom_1494592154059{margin-bottom: 54px !important;}.vc_custom_1494592684973{margin-bottom: 62px !important;}.vc_custom_1492161912718{margin-bottom: 50px !important;}.vc_custom_1613652279318{padding-top: 20px !important;}.vc_custom_1505712745622{border-radius: 2px !important;}.vc_custom_1494677731771{margin-bottom: 111px !important;}.vc_custom_1492162251965{margin-bottom: 50px !important;}.vc_custom_1492162256127{margin-bottom: 50px !important;}.vc_custom_1492170545778{margin-bottom: 50px !important;}</style><noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript><style id="yellow-pencil">
+/*
+The following CSS generated by YellowPencil Plugin.
+https://yellowpencil.waspthemes.com
+*/
+</style>
+    <style>
+  
+        body {
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: 0;
+        }
+        .full-height {
+          height: 100vh;
+        }
+        
+        .header {
+            height: 50px;
+        }
+        
+        .mobileShow {display: none;}
+        
+          /* Smartphone Portrait and Landscape */
+    
+        
+          .logo-img{
+            width: 300px !important;
+            height: 50px !important;
+          }
+        
+          .project-title{
+            color: #000000;
+            font-size: 20px;
+            margin-right: 100px;
+            text-align: center;
+        }
+        
+        img{
+          height:auto;
+        }
+        .stm-navigation__default-1 ul > li {
+          float: left;
+        }
+        
+        .stm-header-new{
+          padding: 12px 0;
+          width: 100%;
+          background-color: white;
+          z-index: 111;
+          position: fixed;
+        }
+        
+        .site-content{
+          margin-top: 124px;
+        }
+        
+        .stm-navigation__default-1 ul > li >a {
+          color: #000000;
+          font-size: 15px;
+          font-family:'Poppins';
+          font-weight: 700;
+          padding: 0 20px;
+        }
+        
+        .stm-navigation__default-1 ul > li >a:hover {
+          border-bottom: 3.5px solid;
+          padding-bottom: 10px;
+        }
+        
+        .stm-header-new > .container{
+          max-width: 1350px;
+          margin: 0 auto 0 auto;
+        }
+
+        @media screen and (max-width: 1024px) {
+          .stm-header-new > .container {
+            display: none;
+          }
+
+          .left-sidebar{
+            width: 100%;
+          }
+
+          .right-container-1{
+            width: 100%;
+            display: none;
+            overflow: auto;
+          }
+    
+          .site-content{
+            position: relative;
+            margin: 0px;
+          }
+    
+          .stm-header-new{
+            position: relative;
+            padding-top: 12px;
+          }
+        
+          .stm-header__row-1{
+            width: 75%;
+            height: 100%;
+            background-color: #000000 ;
+          }
+          
+          .stm-navigation__default_mob ul > li >a {
+            color: #fff;
+            font-size: 15px;
+            font-family:'Poppins';
+            font-weight: 700;
+          }
+        
+        
+          
+          .stm-navigation__default_mob ul > li{
+            margin: 30px 0;
+          }
+        
+          #footer-main{
+            flex-direction: column;
+          }
+
+          .content{
+            flex-direction: column;
+          }
+          
+        }
+        
+        @media screen and (min-width: 1025px) {
+          .container-mob {
+            display: none;
+          }
+
+          .left-sidebar{
+            width: 25%;
+          }
+          
+          .right-container-1{
+            width: 75%;
+            display: none;
+            overflow: auto;
+          }
+
+          .content{
+            top: 124px;
+            position: relative;
+          }
+        
+        
+        }
+      
+        @media screen and (min-width: 1200px){
+            .container-big {
+              max-width: 1140px;
+          }
+        }
+    
+        
+          </style> 
+          <style>
+            .left-sidebar > ul > li{
+              padding: 10px;
+              border: 1px solid white;
+            }
+
+            .advertise{
+              display: flex;
+              justify-content: center;
+            }
+
+            .advertise > div{
+              width: 80%;
+            }
+
+            .advertise > div > marquee > ul{
+              width: max-content;
+            }
+
+            .advertise > div > marquee > ul > li{
+              padding-left: 10px;
+              float: left;
+            }
+          </style>
+</head>
+<body>
+    
+    {% include 'partials/navbar.html' %}
+    {% block content %}{% endblock %}
+    <div class="container" style="position: relative;">
+        <div class="content" style="display: flex; padding-bottom: 110px;">
+            <div class="left-sidebar" style="height:100%; position: relative;">
+              <h2 style="background-color: #109af1; margin:0; padding: 10px;border-radius: 5px 5px 0 0;">About Us</h2>
+                <ul id="opt" style="list-style: none; background: #109af1; padding: 0;">
+                  <li><a style="color: #000;" onclick="show('intro'); ">Introduction</a></li>
+                  <li><a style="color: #000;" onclick="show('os'); ">Organizational Structure</a></li>
+                  <li><a style="color: #000;" onclick="show('ol'); " >Our Leadership</a></li>
+                </ul>
+            </div>
+            <div class="right-container-1" id="intro" style="padding: 0 5%; display: block;">
+                <h3>Introduction</h3>
+                <hr style="border: #000 solid 1px;">
+                
+                  <p>Women and Child Development Department was formed as a separate Administrative Department by the Government of Maharashtra in June 1993.</p>
+                  <p>The main objectives of the Department are to focus on promoting the survival, protection, development, welfare and participation of women and children in a holistic manner. The department is responsible for policy making, formulation of programmes /schemes, implementation of development programmes, and co-ordination of efforts of both governmental and non-governmental organizations working in the field of Women and Child Development.</p>
+                  <p>
+                    Maharashtra is the second most populous state with around 11.2 crores citizens residing in the state.
+                    <ul>
+                      <li>Women constitute around 48% at around 5.41 crores.</li>
+                      <li>Children (0-6 yrs.) constitute around 12% at around 1.33 Crores</li>
+                      <li>Sex ratio of 894 for age group of 0-6 yrs.</li>
+                    </ul>
+                  </p> 
+                
+            </div>
+            <div class="right-container-1" id="os" style="padding: 0 5%;">
+              <h3>Organizational Structure</h3>
+              <hr style="border: #000 solid 1px;">
+              <p>
+                <img src="{% static 'e1.png' %}" alt="">
+              </p>
+              <p>There are Two Commissionerates and other field offices under the administrative control of Women and Child Development Department. The department is responsible for the overall strategic direction setting, administration and financial matters pertaining to these Commissionerates and Field Offices. The above chart depicts various commissionerates/ field offices that the Dept. has under its wing:</p>
+              <p>
+                <img src="{% static 'e2.png' %}" alt="">
+              </p>
+          </div>
+          <div class="right-container-1" id="ol" style="padding: 0 5%; ">
+            <h3>Our Leadership</h3>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><img src="{% static 'cm.jpg' %}" style="height: 100px; max-width: 100px;" alt=""></td>
+                  <td>
+                    <strong>Shri. Eknath Shinde</strong>
+                    <br>Hon'ble Chief Minister
+                  </td>
+                  <td>
+                    <p>6th Floor, Mantralaya
+                      Madam Kama Road,
+                      Hutatma Rajguru Chowk,
+                      Mumbai - 400032,
+                      Maharashtra, India
+                      Landline No: 022-22025051 /22023858
+                      Email ID:cm@maharashtra.gov.in</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="{% static 'Minister.jpg' %}" style="height: 100px; max-width: 100px;" alt=""></td>
+                  <td>
+                    <strong>Shri. Mangal Prabhat Lodha</strong>
+                    <br>Hon'ble Minister Women and Child Development Department.
+                  </td>
+                  <td>
+                    <p>Email ID:min.wcd@ maharashtra.gov.in</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="{% static 'Secmam.jpg' %}" style="height: 100px; max-width: 100px;" alt=""></td>
+                  <td>
+                    <strong>Smt. I. A. Kundan</strong>
+                    <br>Principal Secretary,<br>
+                    Women and Child Development Department
+                  </td>
+                  <td>
+                    <p>3rd Floor, New Administrative Building
+                      Madam Kama Road,
+                      Hutatma Rajguru Chowk,
+                      Mumbai - 400032,
+                      Maharashtra, India
+                      Landline No: 022- 2202 7050
+                      Email ID: psec.wchd@maharashtra.gov.in</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    <div class="advertise" style="display: flex; bottom: 0; position: fixed;">
+      <div>
+        <marquee onmouseover="this.stop();" onmouseout="this.start();" behavior="" direction="">
+          <ul style="list-style-type: none;">
+            <li>
+              <a href="https://uidai.gov.in/" title="Unique Identification Authority of India" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784c1ed1c31duidai.png" alt="Unique Identification Authority of India" title="Unique Identification Authority of India" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="http://mahapolice.gov.in/" title="Maharashtra Police Department" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784c1f92aecemaharashtra.png" alt="Maharashtra Police Department" title="Maharashtra Police Department" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="https://healthasha.maharashtra.gov.in/" title="ASHA" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784c2117e3eenhm.png" alt="ASHA" title="ASHA" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="https://arogya.maharashtra.gov.in" title="Government of Maharashtra Public Health Department India" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784c21e39f94aarogya.png" alt="Government of Maharashtra Public Health Department India" title="Government of Maharashtra Public Health Department India" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="http://www.mahanews.gov.in/Home/MahaNewsHome.aspx" title="MahaNews" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784d014a9dadmahanewlogo.png" alt="MahaNews" title="MahaNews" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="https://mumbaipolice.maharashtra.gov.in" title="MUMBAI POLICE" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784d047d40celogo.gif" alt="MUMBAI POLICE" title="MUMBAI POLICE" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="http://www.nvsp.in/index.html" title="National Voters Service Portal" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784d0849ac73logovoter.png" alt="National Voters Service Portal" title="National Voters Service Portal" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="https://india.gov.in/" title="National Portal of India" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784d201ee57fimages.png" alt="National Portal of India" title="National Portal of India" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/channel/UCcF1nwo8o612Xok2_g1ybtg/featured" title="Learning at Home" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5f7d870a6dcb5unnamed.jpg" alt="Learning at Home" title="Learning at Home" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="http://shebox.nic.in/" title="SHe-Box" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/60700731192ffbbbplogo.png" alt="SHe-Box" title="SHe-Box" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="https://amritmahotsav.nic.in/" title="Azadi Ka Amrit Mahotsav" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/62c413bc89225logoblack.png" alt="Azadi Ka Amrit Mahotsav" title="Azadi Ka Amrit Mahotsav" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="http://nipccd.nic.in/" title="National Institute Of Public Cooperation And Child Development" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/572e83db6adb5niclogo.png" alt="National Institute Of Public Cooperation And Child Development" title="National Institute Of Public Cooperation And Child Development" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="http://www.nmew.gov.in" title="National Mission for Empowerment of Women" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/572e84b877a59mission.png" alt="National Mission for Empowerment of Women" title="National Mission for Empowerment of Women" target="_blank"> 
+              </a>
+            </li>
+            <li>
+              <a href="http://www.wcd.nic.in/food-nutrition-board" title="Food &amp; Nutrition Board" target="_blank" onclick="return sitevisit();">
+                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/572e84d30a168fnb.png" alt="Food &amp; Nutrition Board" title="Food &amp; Nutrition Board" target="_blank"> 
+              </a>
+            </li>
+          </ul>
+        </marquee>
+      </div>
+      
+    </div>
+    
+ 
+
+    <script>
+      function show(o){
+        var l = document.getElementsByClassName('right-container-1')
+        for(var i=0;i<l.length; i++){
+          l[i].style.display = 'none'
+        }
+        console.log(o)
+        document.getElementById(o).style.display = 'block'
+
+      }
+    </script>
+
+</body>
+</html>
