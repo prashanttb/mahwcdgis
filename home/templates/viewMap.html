@@ -210,7 +210,7 @@
 </style>
 
 
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
 
 <div id="side-bar" style="background-color: rgba(255, 255, 255);">
     <!-- side-bar container -->
@@ -522,15 +522,14 @@ const download = ()=>{
         rows.push(row);
         
     }
-    console.log(rows[0]);
+    console.log(rows[1]);
     
     
-    let csvContent = "data:text/csv;charset=utf-8," 
-    + rows.map(e => e.join(",")).join("\n");
-
+    const bom = "\uFEFF"
+    let csvContent = "data:text/csv;charset=utf-8," +bom+ rows.map(e => e.join(",")).join("\n");
     var encodedUri = encodeURI(csvContent);
     var link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
+    link.setAttribute("href",encodedUri);
     link.setAttribute("download", "my_data.csv");
     document.body.appendChild(link); // Required for FF
 
