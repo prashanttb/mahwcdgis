@@ -239,7 +239,8 @@ img{
                 <ul style="list-style: none;">
                   <li ><a href="{% url 'homepage' %}">Home</a></li>
                   <li ><a href="{% url 'map' %}">Map</a></li>
-                  <li onmouseover="document.getElementById('about').style.display='block'" onmouseleave="document.getElementById('about').style.display='none'"><a href="">About Us</a>
+                  <li ><a href="{% url 'about_us' %}">About Us</a>
+                  <!-- <li onmouseover="document.getElementById('about').style.display='block'" onmouseleave="document.getElementById('about').style.display='none'"><a href="">About Us</a>
                     <div id="about" style="position: absolute;z-index:1111;background-color:white; display:none;">
                       <ul style="list-style: none;">
                         <li style="float: none;"><a href="{% url 'what-we-do' %}">WHAT WE DO</a></li>
@@ -247,7 +248,7 @@ img{
                         <li style="float: none;"><a href="{% url 'partners' %}">PARTNERS</a></li>
                       </ul>
                     </div>
-                  </li>
+                  </li> -->
                   <li ><a href="{% url 'contact_us' %}">Contacts</a></li>
                 </ul>
               </div>
@@ -283,13 +284,14 @@ img{
               <ul style="list-style: none;">
                 <li ><a href="{% url 'homepage' %}">Home</a></li>
                 <li ><a href="{% url 'map' %}">Map</a></li>
-                <li id="about" onclick="aboutdd()"><a aria-disabled="true">About Us</a>
+                <li ><a href="{% url 'about_us' %}">About Us</a>
+                <!-- <li id="about" onclick="aboutdd()"><a aria-disabled="true">About Us</a>
                 <ul id="about_list" style="list-style-type: none; color:white;font-family:Poppins;display:none;">
                   <li><a href="{% url 'what-we-do' %}">What we do</a></li>
                   <li><a href="{% url 'our-team' %}">Our Team</a></li>
                   <li><a href="{% url 'partners' %}">Partners</a></li>
                 </ul>
-                </li>
+                </li> -->
                 <li ><a href="{% url 'contact_us' %}">Contacts</a></li>
                 <li><div class="stm-header__cell stm-header__cell_right" style="width:100%;display: flex; justify-content: flex-end; align-items:center;">
                   <div style="display: flex; ">
@@ -358,11 +360,11 @@ img{
           <span class="stm-icontext__text" itemprop="address">
               Address:-  Rajmata Jijau Mother-Child Health and Nutrition Mission, Department of Women and Child Development, Government of Maharashtra 8th Floor, New Mantralay, Beside G.T. Hospital Complex, Lokmanya Tilak Road, Mumbai, Maharashtra-400001                    </span>
       </div>
-                  <div class="stm-icontext stm-icontext_style2 stm-icontext__phone" data-title="Phone">
+                  <!-- <div class="stm-icontext stm-icontext_style2 stm-icontext__phone" data-title="Phone">
           <i class="stm-icontext__icon fa fa-phone-square"></i>
           <span class="stm-icontext__text" itemprop="telephone">
               Tel. No.(022 )22622408 / (022) 22618448/53                    </span>
-      </div>
+      </div> -->
                   <div class="stm-icontext stm-icontext_style2 stm-icontext__email" data-title="Email">
           <i class="stm-icontext__icon fa fa-envelope"></i>
           <span class="stm-icontext__text">
@@ -374,6 +376,7 @@ img{
           </div></div>
               </div>
             </div>
+            <div><h3 style="color: aliceblue; text-align: center;">Designed and Developed at</h3></div>
             <div>
               <div style="padding: 20px;" class="stm-footer__bottom">
               <div class="stm_markup stm_markup_right stm_markup_50">
