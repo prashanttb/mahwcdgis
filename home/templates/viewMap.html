@@ -9,20 +9,20 @@
         padding: 2px 3px;
         text-align: center;
     }
-    
+
     th {
         font-weight: bold;
     }
-    
+
     tr:hover {
         background-color: #c9dbe6;
     }
-    
+
     #checkboxes {
         display: none;
         /* border: 1px #dadada solid; */
     }
-    
+
     .slider {
         -webkit-appearance: none;
         appearance: none;
@@ -34,11 +34,11 @@
         -webkit-transition: .2s;
         transition: opacity .2s;
     }
-    
+
     .slider:hover {
         opacity: 1;
     }
-    
+
     .slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
@@ -47,20 +47,20 @@
         background: #FF0000;
         cursor: pointer;
     }
-    
+
     .slider::-moz-range-thumb {
         width: 25px;
         height: 25px;
         background: #FF0000;
         cursor: pointer;
     }
-    
+
     .sliderticks {
         display: flex;
         justify-content: space-between;
         padding: 0 10px;
     }
-    
+
     .sliderticks p {
         position: relative;
         display: flex;
@@ -72,23 +72,23 @@
         line-height: 40px;
         margin: 0 0 20px 0;
     }
-    
+
     input[type="range"]::-moz-range-track {
         padding: 0 10px;
         background: repeating-linear-gradient(to right, #ccc, #ccc 10%, #000 10%, #000 11%, #ccc 11%, #ccc 20%);
     }
-    
+
     #checkboxes3 label {
         display: block;
         text-align: left;
         margin: 10px;
     }
-    
+
     #checkboxes3 {
         display: none;
         /* border: 1px #dadada solid; */
     }
-    
+
     #checkboxes label {
         display: block;
         text-align: left;
@@ -97,29 +97,29 @@
     /* #checkboxes label:hover {
   background-color: #1e90ff;
 } */
-    
+
     #checkboxes2 label {
         display: block;
         text-align: left;
         margin: 10px;
     }
-    
+
     #checkboxes2 {
         display: none;
         /* border: 1px #dadada solid; */
     }
-    
+
     .btn {
         margin: 10px;
     }
-    
+
     .border {
         padding: 6px 8px;
         border-style: groove;
         border-radius: 5px;
         margin: 20px;
     }
-    
+
     .info {
         padding: 6px 8px;
         font: 14px/16px Arial, Helvetica, sans-serif;
@@ -127,12 +127,12 @@
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         border-radius: 5px;
     }
-    
+
     .info h4 {
         margin: 0 0 5px;
         color: #777;
     }
-    
+
     .table {
         border-collapse: collapse;
         padding: 50px;
@@ -140,20 +140,20 @@
         /* background:rgba(191, 149, 233, 0.473); */
     }
     /* css to customize Leaflet default styles  */
-    
+
     .leaflet-popup-content-wrapper {
         background: rgba(0, 0, 0, 0.9);
         color: #ffffff;
     }
-    
+
     .leaflet-popup-content {
         font-weight: bold;
     }
-    
+
     h6 {
         color: blue;
     }
-    
+
     .select {
         background-color: rgb(116, 109, 109);
         width: 40%;
@@ -161,17 +161,17 @@
         ;
         color: white;
     }
-    
+
     .select.highlight {
         background: rgb(0, 0, 0);
         color: white;
     }
-    
+
     .circle {
         background-color: red;
         border-radius: 50%;
     }
-    
+
     .table-legend {
         border-collapse: collapse;
         padding: 2px 3px;
@@ -180,7 +180,7 @@
         /* font-weight: bold; */
         background: #fff;
     }
-    
+
     .info {
         padding: 6px 8px;
         font: 14px/16px Arial, Helvetica, sans-serif;
@@ -189,17 +189,17 @@
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         border-radius: 5px;
     }
-    
+
     .info h4 {
         margin: 0 0 5px;
         color: #777;
     }
-    
+
     .legend {
         line-height: 18px;
         color: #555;
     }
-    
+
     .legend i {
         width: 18px;
         height: 18px;
@@ -210,7 +210,7 @@
 </style>
 
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
 <div id="side-bar" style="background-color: rgba(255, 255, 255);">
     <!-- side-bar container -->
@@ -237,10 +237,10 @@
                   <option value="{{ i.district }}">{{ i.district }}</option>
                   {% endfor %}
                  </select>
-          </div> 
-          
-       
-  
+          </div>
+
+
+
         <div class="tooltips" title="Please select the Maharashtra's Blocks" id="block">
               <select name="block_n__in" class='form-control mb-2 mt-2' id="block_s">
                 <option value=""> Select Taluka </option>
@@ -248,12 +248,11 @@
                 <option value="{{ i.block_n }}">{{ i.block_n }}</option>
                 {% endfor %}
                </select>
-        </div> 
+        </div>
 
-        
             <div class="dd-1">
                 <select class='form-control mb-2 mt-2' name="" id="category_1">
-                    <option value="">Select from Category 1</option>
+                    <option value="">Select</option>
                     <option value="agan_type">Anganwadi Type</option>
                     <option value="agancbuil_field">Anganwadi Construction</option>
                     <option value="aganc_forrent">Is Anganwadi Center on Rent ?</option>
@@ -261,8 +260,51 @@
                     <option value="no_owner_agancbuil">If no, then What is the name of the owner of the place ?</option>
                     <option value="child_sitagan">Child sitting capacity of Anganwadi Center</option>
                     <option value="agan_fenc">Is Your Anganwadi Center Fenced ?</option>
+                    <option value="child_weigh_material">Does your Anganwadi center have equipment to measure weight of small children ?</option>
+                    <option value="child_weigh_mat_working">Is the weight machine for children, working ?</option>
+                    <option value="adult_wtequip">Does your Anganwadi center have equipment to measure weight of adults ?</option>
+                    <option value="adult_wteq_working">Is the weight machine for adults, working ?</option>
+                    <option value="infant_meter">Does your Anganwadi center have equipment (Infantometer) to measure length of small children ?</option>
+                    <option value="infant_meter_working">Is the Infantometer for children, working ?</option>
+                    <option value="stadiometer">Does your Anganwadi center have any equipment (Stadiometer) to measure height ?</option>
+                    <option value="stadm_working">Is Stadiometer working</option>
+                    <option value="maint_repair_need">Does your AWC building needs care or repair</option>
+                    <option value="agan_drinkwat_avail">Does your Anganwadi center have drinking water available throughout the year?</option>
+                    <option value="agan_tap">Does your Anganwadi center have tap water connection?</option>
+                    <option value="plumb_workcond">Is the tap connection in ON condition?</option>
+                    <option value="toil_fac">Does your Anganwadi center have toilet facilities?</option>
+                    <option value="toil_working">Is the toilet in working order?</option>
+                    <option value="electricity_connection">Does your Anganwadi center have electricity connection? Is it in condition?</option>
+                    <option value="solar_powersupply">Is your Anganwadi center powered by solar power?</option>
+                    <option value="agan_tv">Does your Anganwadi Center have TV?</option>
+                    <option value="tv_working">Is the TV in working condition?</option>
+                    <option value="agan_back_field">Does your Anganwadi center have a courtyard garden?</option>
+                    <option value="space_own_field">If not, does your Anganwadi center have its own space to create a backyard garden?</option>
+                    <option value="">Select from Category 3</option>
+                    <option value="vac_agan">Are there vacancies in your Anganwadi Centre?</option>
+                    <option value="post_vac">Which of the following posts are vacant?</option>
+                    <option value="post_vac_aw_worker">Which of the following posts are vacant?/Anganwadi Sevika</option>
+                    <option value="post_vac_help">Which of the following posts are vacant?/Asst</option>
+                    <option value="pro_fill_agan_post">Has the process of filling vacancies in this Anganwadi Center started? Vacancies ?/help</option>
+                    <option value="child0_6monage">What is the total number of children aged 0-6 months in your Anganwadi?</option>
+                    <option value="child6mon_field">What is the total number of children aged 6 months to 3 years in your Anganwadi?</option>
+                    <option value="child3_6y">What is the total number of children aged 3 to 6 years in your Anganwadi?</option>
+                    <option value="tot_no_child">Total number of children</option>
+                    <option value="preg_moth_field">What is the total number of pregnant mothers in your Anganwadi?</option>
+                    <option value="brestfeed_field">What is the total number of lactating mothers in your Anganwadi?</option>
+                    <option value="preg_lact_field">Total number of pregnant and lactating mothers</option>
+                    <option value="child_weigh_meas_agan_mar22">How many registered children have been weighed in your Anganwadi center in March 2022?</option>
+                    <option value="child_heigh_meas_agan_mar22">How many registered children have their height measured in March 2022 in your Anganwadi Centre?</option>
+                    <option value="no_suv_child_agan_Jan_mar22">What is the number of severely underweight (SUW) children registered in your Anganwadi center during January 2022-March 2022?</option>
+                    <option value="no_suv_child_recthr_jan_mar22">What is the number of severely underweight (SUW) infants who received additional THR during January 2022-March 2022 in your Anganwadi center?</option>
+                    <option value="child_sam_field">What is the number of acutely malnourished (SAM) children registered in your Anganwadi center during January 2022-March 2022?</option>
                 </select>
             </div>
+
+            <p id="selected_optn" >
+
+            </p>
+
 
             <!-- <input type="hidden" name="cate1" value="" id="cate1"> -->
 
@@ -270,15 +312,15 @@
                 <option value=""></option>
             </select> -->
 
-            <p id="chk-1">
+            <!-- <p id="chk-1"> -->
                 <!-- <input type="checkbox" class="" name="agan_type__in" value="मुख्य" id=""><label class="mx-2" for="">dfsdf</label><br>
                 <input type="checkbox" name="agan_type__in" value="मिनी" id=""><br> -->
-            </p>
-
-            
+            <!-- </p> -->
 
 
-            <div class="dd-2">
+
+
+            <!-- <div class="dd-2">
                 <select class='form-control mb-2 mt-2' name="" id="category_2">
                     <option value="">Select from Category 2</option>
                     <option value="child_weigh_material">Does your Anganwadi center have equipment to measure weight of small children ?</option>
@@ -301,9 +343,9 @@
                     <option value="tv_working">Is the TV in working condition?</option>
                     <option value="agan_back_field">Does your Anganwadi center have a courtyard garden?</option>
                     <option value="space_own_field">If not, does your Anganwadi center have its own space to create a backyard garden?</option>
-                    
+
                 </select>
-            </div>
+            </div> -->
 
             <!-- <input type="hidden" name="cate2" value="" id="cate2">
 
@@ -311,12 +353,12 @@
                 <option value=""></option>
               </select> -->
 
-              <p id="chk-2">
+              <!-- <p id="chk-2"> -->
                 <!-- <input type="checkbox" class="" name="agan_type__in" value="मुख्य" id=""><label class="mx-2" for="">dfsdf</label><br>
                 <input type="checkbox" name="agan_type__in" value="मिनी" id=""><br> -->
-            </p>
+            <!-- </p> -->
 
-            <div class="dd-1">
+            <!-- <div class="dd-1">
                 <select class='form-control mb-2 mt-2' name="" id="category_3">
                     <option value="">Select from Category 3</option>
                     <option value="vac_agan">Are there vacancies in your Anganwadi Centre?</option>
@@ -338,18 +380,18 @@
                     <option value="child_sam_field">What is the number of acutely malnourished (SAM) children registered in your Anganwadi center during January 2022-March 2022?</option>
 
                 </select>
-            </div>
+            </div> -->
             <!-- <input type="hidden" name="cate3" value="" id="cate3">
 
             <select name="cate_val3" style="display: none;" class='form-control mb-2 mt-2' id="cate_val3">
                 <option value=""></option>
               </select> -->
 
-              <p id="chk-3">
+              <!-- <p id="chk-3"> -->
                 <!-- <input type="checkbox" class="" name="agan_type__in" value="मुख्य" id=""><label class="mx-2" for="">dfsdf</label><br>
                 <input type="checkbox" name="agan_type__in" value="मिनी" id=""><br> -->
-            </p>
-              
+            <!-- </p> -->
+
             <button hidden id="cate_submit" type="submit" class="btn btn-primary">submit</button>
         </form>
     </div>
@@ -363,9 +405,9 @@
                 <option value="{{ i.district }}">{{ i.district }}</option>
                 {% endfor %}
                </select>
-        </div> 
-        
-     
+        </div>
+
+
 
        <div class="tooltips" title="Please select the Maharashtra's Blocks" id="block">
         &nbsp;&nbsp;
@@ -387,7 +429,7 @@
         <input type="hidden" name="cate_val1" value="" id="">
         <!-- <input type="hidden" name="cate_val1" id="">
         <input type="hidden" name="cate_val1" id=""> -->
-  
+
           <!-- <select name="cate_val1" style="display: none;" class='form-control mb-2 mt-2' id="cate_val1">
             <option value=""></option>
           </select> -->
@@ -397,13 +439,13 @@
           <!-- <select name="cate_val3" style="display: none;" class='form-control mb-2 mt-2' id="cate_val3">
             <option value=""></option>
           </select>    -->
-  
+
       </div>
-      
+
 
     </div>
 
-    <!-- <div style="margin:20px" class="border"> 
+    <!-- <div style="margin:20px" class="border">
         <select name="agan_type" class='form-control' id = "agan_type">
             <option value="">Select type of Aganwadi</option>
             <option value="मुख्य">मुख्य</option>
@@ -411,7 +453,7 @@
         </select>
 
 
-    
+
     </div> -->
     <!-- <div class="border">
         <div class="tooltips mb-3" title="Please select the Construction Type">
@@ -422,7 +464,7 @@
               <option value="पक्के">पक्के</option>
               {% comment %} <option value="d">d</option> {% endcomment %}
              </select>
-      </div> 
+      </div>
       <div class="tooltips" title="Please select the Angan">
         <select name="sitangan" class='form-control' id = "sitangan">
           <option value=""> Select Child Sit Angan</option>
@@ -431,13 +473,13 @@
           <option value="४१-६०">४१-६०</option>
           <option value="६०+">६०+</option>
          </select>
-  </div> 
+  </div>
     </div> -->
- 
+
     <button hidden type="submit" id="fs" class="btn btn-primary">Plot Data</button>
 
 </form>
-    
+
     <button onclick="download()" id="down-data"class="btn btn-primary">Download Data</button>
     <button onclick="clearAll()" id="clear-data"class="btn btn-primary">Clear All</button>
 
@@ -446,7 +488,7 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script>
     let isClicked = false
-    
+
     var icon1 = L.icon({
         iconUrl:  "{% static 'map/pinmargerblue.png' %}",
         iconSize:     [30, 30], // size of the icon
@@ -455,17 +497,17 @@
         // shadowAnchor: [4, 62],  // the same for the shadow
         popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
     });
-    
+
     var awcLayer = L.layerGroup().addTo(mymap);
     // awcLayer.addTo(mymap);
-    
+
     </script>
       <style>
       .another-popup .leaflet-popup-content-wrapper .leaflet-popup-content{
           width: 400px;
           height:auto;
         }
-    
+
       </style>
 
       <script>
@@ -520,11 +562,11 @@ const download = ()=>{
             row.push(point.data[attr])
         }
         rows.push(row);
-        
+
     }
     console.log(rows[1]);
-    
-    
+
+
     const bom = "\uFEFF"
     let csvContent = "data:text/csv;charset=utf-8," +bom+ rows.map(e => e.join(",")).join("\n");
     var encodedUri = encodeURI(csvContent);
@@ -547,7 +589,7 @@ $("#district").change(function(){
     if(districtLayer){
         mymap.removeLayer(districtLayer)
     }
-  
+
     districtLayer = L.tileLayer.wms('https://geoserver2.communitygis.net/geoserver/wms', {
             layers: '	geonode:maharashtra_districts',
             format: 'image/png',
@@ -555,7 +597,7 @@ $("#district").change(function(){
             cql_filter:`district='${DistrictSelected}'`,
           });
           districtLayer.addTo(mymap);
-  
+
     switch (DistrictSelected) {
       case "Raigad":
           optionsList = Raigad;
@@ -665,9 +707,9 @@ $("#district").change(function(){
       case "Kolhapur":
           optionsList = Kolhapur;
           break;
-  
+
   }
-  
+
   // console.log(optionsList)
     if(optionsList!=undefined){
         htmlString = htmlString+"<option value=''> Select Taluka </option>";
@@ -677,8 +719,8 @@ $("#district").change(function(){
     }
     $("#block_s").html(htmlString);
 
-  console.log('not')  
-  
+  console.log('not')
+
   });
 
 $('#block_s').change(function(){
@@ -790,7 +832,7 @@ function setViewByDistrict(layerName, state,district) {
         console.log('Fetch Error :-S', err);
     });
 }
-  
+
 function putWMSLayerdist() {
     var dist = document.getElementById('district').value;
     var state = 'Maharashtra';
@@ -849,9 +891,9 @@ function putWMSLayerdist() {
     // console.log(wms_layer);
     wms_layer.addTo(mymap);
     setView('geonode:MH_block0', taluka);
-    
+
     talLayer=wms_layer;
-    // console.log(taluka);    
+    // console.log(taluka);
 
 
 }
@@ -876,7 +918,7 @@ $('#category_3').change(function(){
 
 
 var d;
-{/* 
+{/*
 $(document).ready(
     $('#post-form').submit(async function(e){
         e.preventDefault();
@@ -891,7 +933,7 @@ $(document).ready(
             success: function(data){
                 //console.log(data["data"])
                 d = JSON.parse(data["data"])
-                plotData()   
+                plotData()
             }
         })
         console.log(' belowhjkhjh');
@@ -913,13 +955,13 @@ $(document).ready(
                     //console.log(document.getElementById('cate1').value)
                     document.getElementById('cate_val1').style.display = 'block';
                     var htmlString="<option value='"+"'>"+ 'Select' +"</option>";
-                    
+
                     data.c1.forEach(e=>{
                         for(k in e)
                         htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
                     })
                     $("#cate_val1").html(htmlString);
-                    
+
                 }else{
                     document.getElementById('cate_val1').style.display = 'none';
                     $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
@@ -946,7 +988,7 @@ $(document).ready(
                     document.getElementById('cate3').value = document.getElementById("category_3").value
                     document.getElementById('cate_val3').style.display = 'block';
                     var htmlString="<option value='"+"'>"+ 'Select' +"</option>";
-                    
+
                     data.c3.forEach(e=>{
                         for(k in e)
                             htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
@@ -958,7 +1000,7 @@ $(document).ready(
                     document.getElementById('cate3').value=""
                     document.getElementById('cate_val3').dispatchEvent(new Event('change'));
                 }
-                //console.log(data)  
+                //console.log(data)
             }
         })
     })
@@ -994,6 +1036,43 @@ $('#cate_val3').change(function(){
     //document.getElementById('fs').click()
 } );
 
+/*
+function sortSelect(selElem) {
+    var tmpAry = new Array();
+    for (var i=0;i<selElem.options.length;i++) {
+        tmpAry[i] = new Array();
+        tmpAry[i][0] = selElem.options[i].text;
+        tmpAry[i][1] = selElem.options[i].value;
+    }
+    tmpAry.sort();
+    while (selElem.options.length > 0) {
+        selElem.options[0] = null;
+    }
+    for (var i=0;i<tmpAry.length;i++) {
+        var op = new Option(tmpAry[i][0], tmpAry[i][1]);
+        selElem.options[i] = op;
+    }
+    return;
+}
+*/
+
+function removeOptn(a,b){
+    // console.log(document.getElementById(a).getElementsByTagName('input'))
+    for(var i=0;i<document.getElementById(a).getElementsByTagName('input').length;i++){
+        if(document.getElementById(a).getElementsByTagName('input')[i].checked){
+            document.getElementById(a).getElementsByTagName('input')[i].checked=false;
+            document.getElementById('cate_submit').click();
+            break;
+        }
+    }
+    document.getElementById('category_1').innerHTML+='<option value="'+a+'">'+b+'</option>';
+    document.getElementById(a).remove()
+    console.log(`${a} ${b}`)
+    // document.getElementById('cate_submit').click();
+    // sortSelect(document.getElementById('category_1'))
+}
+
+// var htm = "";
 $(document).ready(
     $('#cate').submit(async function(e){
         e.preventDefault();
@@ -1017,7 +1096,7 @@ $(document).ready(
                 //console.log(data["data"])
                 d = JSON.parse(data["data"])
                 //console.log(d)
-                plotData()   
+                plotData()
             }
         })
         console.log(' belowhjkhjh');
@@ -1040,7 +1119,7 @@ $(document).ready(
                     // document.getElementById('cate_val1').style.display = 'block';
                     /*
                     var htmlString="<option value=''>"+ 'Select' +"</option>";
-                    
+
                     data.c1.forEach(e=>{
                         for(k in e)
                         htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
@@ -1049,14 +1128,20 @@ $(document).ready(
                     */
 
                     var htm = "";
+                    htm+=`<div id='`+document.getElementById('cate1').value+`'>`+document.getElementById("category_1").options[document.getElementById("category_1").selectedIndex].text+`<i onclick='removeOptn("`+document.getElementById('cate1').value+`","`+document.getElementById("category_1").options[document.getElementById("category_1").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><br><br>`
                     data.c1.forEach(e=>{
                         for(k in e)
                         htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("category_1").value+"__in' value="+e[k]+" id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
                     })
-                    document.getElementById('chk-1').innerHTML=htm
+                    htm+='</div>'
+
+                    document.getElementById('selected_optn').innerHTML+=htm;
+
+                    // document.getElementById('chk-1').innerHTML=htm
                     $('.chkc-1').click(function(){
                         document.getElementById('cate_submit').click();
                     })
+                    document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
                 }else{
                     document.getElementById('chk-1').innerHTML=""
                     /*
@@ -1065,7 +1150,7 @@ $(document).ready(
                     document.getElementById('cate_val1').value="";
                     document.getElementById('cate_val1').dispatchEvent(new Event('change'));
                     */
-                }  
+                }
 
             }
         })
@@ -1090,7 +1175,7 @@ $(document).ready(
                     // document.getElementById('cate_val2').style.display = 'block';
                     /*
                     var htmlString="<option value=''>"+ 'Select' +"</option>";
-                    
+
                     data.c2.forEach(e=>{
                         for(k in e)
                         htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
@@ -1114,9 +1199,9 @@ $(document).ready(
                     document.getElementById('cate_val2').value="";
                     document.getElementById('cate_val2').dispatchEvent(new Event('change'));
                     */
-                }  
+                }
                 console.log('end')
-                
+
             }
         })
         //console.log($('#category_1').val())
@@ -1139,7 +1224,7 @@ $(document).ready(
                     // document.getElementById('cate_val3').style.display = 'block';
                     /*
                     var htmlString="<option value=''>"+ 'Select' +"</option>";
-                    
+
                     data.c3.forEach(e=>{
                         for(k in e)
                         htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
@@ -1163,7 +1248,7 @@ $(document).ready(
                     document.getElementById('cate_val3').value="";
                     document.getElementById('cate_val3').dispatchEvent(new Event('change'));
                     */
-                }  
+                }
 
             }
         })
@@ -1181,7 +1266,7 @@ function plotData(){
     //for(x in d){
     //    console.log(d[x].fields.latitude)
     //}
-    if(d==undefined || d == ""){ 
+    if(d==undefined || d == ""){
         alert("No results for this selection")
         clearAll()
     }
@@ -1217,14 +1302,25 @@ function clearAll(){
             $('#block_s').html(htm)
 
     document.getElementById('category_1').value=""
+
+    // console.log(document.getElementById('cate').getElementsByTagName('input'))
+    for(var i=0;i<document.getElementById('cate').getElementsByTagName('input').length;i++){
+        if(document.getElementById('cate').getElementsByTagName('input')[i].checked){
+            document.getElementById('cate').getElementsByTagName('input')[i].checked=false;
+        }
+    }
+
     //document.getElementById('cate1').value=""
-    document.getElementById('chk-1').innerHTML=""
+    // document.getElementById('chk-1').innerHTML=""
+    /*
     document.getElementById('category_2').value=""
     //document.getElementById('cate2').value=""
     document.getElementById('chk-2').innerHTML=""
     document.getElementById('category_3').value=""
     //document.getElementById('cate3').value=""
     document.getElementById('chk-3').innerHTML=""
+    */
+    
 
     //document.getElementById('cate_val1').style.display = 'none';
     //$("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
@@ -1247,7 +1343,7 @@ function replot(){
         mymap.removeLayer(p)
     })
     points=[]
-    
+
 }
 
 function funct(){
@@ -1258,6 +1354,6 @@ function funct(){
 
       </script>
 
-    
-    
+
+
   {% endblock %}
