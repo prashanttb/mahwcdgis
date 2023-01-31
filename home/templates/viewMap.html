@@ -249,9 +249,11 @@
                 {% endfor %}
                </select>
         </div>
-
+        <div>
+            <i onclick="a()" class="fas fa-plus"></i>
+        </div>
             <div class="dd-1">
-                <select class='form-control mb-2 mt-2' name="" id="category_1">
+                <select class='form-control mb-2 mt-2' style="overflow: auto; height: 400px;" name="" id="category_1">
                     <option value="">Select</option>
                     <option value="agan_type">Anganwadi Type</option>
                     <option value="agancbuil_field">Anganwadi Construction</option>
@@ -300,6 +302,24 @@
                     <option value="child_sam_field">What is the number of acutely malnourished (SAM) children registered in your Anganwadi center during January 2022-March 2022?</option>
                 </select>
             </div>
+            
+            <script>
+                var opn = false;
+                document.getElementById("category_1").style.display='none'
+                function a(){
+                    var x=document.getElementById("category_1");
+                    if(!opn){
+                        
+                        x.style.display='block';
+                        x.click()
+                        x.size = x.options.length;
+                        opn = true
+                    }else{
+                        x.style.display='none';
+                        opn = false
+                    }
+                }
+            </script>
 
             <p id="selected_optn" >
 
