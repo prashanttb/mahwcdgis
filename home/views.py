@@ -155,3 +155,6 @@ def contact_us_mr(request):
 
 def about_us(request):
     return render(request, 'about_us.html')
+
+def viewWcdMap(request):
+    return render(request, 'viewWcdMap.html')
