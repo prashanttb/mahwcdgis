@@ -621,6 +621,7 @@ const download = ()=>{
     link.click();
 }
 
+var DistrictSelected="";
 $("#district").change(function(){
     //document.getElementById('post-form').submit()
     //document.getElementById('cate').click()
@@ -633,13 +634,25 @@ $("#district").change(function(){
         mymap.removeLayer(districtLayer)
     }
 
-    districtLayer = L.tileLayer.wms('https://geoserver2.communitygis.net/geoserver/wms', {
-            layers: '	geonode:maharashtra_districts',
-            format: 'image/png',
-            transparent: 'true',
-            cql_filter:`district='${DistrictSelected}'`,
-          });
-          districtLayer.addTo(mymap);
+var wms_layer;
+var data = fetchJSON("{% static 'data/districts.geojson' %}")
+    .then(function(data) { 
+
+    // do what you want to do with `data` here...
+    data.features.forEach(function(feature) {
+        //console.log(feature.properties.Block)
+        if(DistrictSelected!=""){
+            console.log(feature.properties)
+            if(feature.properties.district==DistrictSelected){
+                wms_layer = L.geoJson(feature.geometry)
+                wms_layer.addTo(mymap)
+            }
+        }
+        districtLayer = wms_layer;
+    });
+    
+});   
+
 
     switch (DistrictSelected) {
       case "Raigad":
@@ -875,6 +888,26 @@ function setViewByDistrict(layerName, state,district) {
         console.log('Fetch Error :-S', err);
     });
 }
+function fetchJSON(url) {
+    return fetch(url)
+      .then(function(response) {
+        return response.json();
+      });
+  }
+
+  /*
+var data = fetchJSON("{% static 'data/districts.geojson' %}")
+            .then(function(data) { 
+
+        // do what you want to do with `data` here...
+        data.features.forEach(function(feature) {
+                console.log(feature);
+                var symbol = feature.properties['icon'];
+                console.log(symbol);
+            });
+
+});
+*/
 
 function putWMSLayerdist() {
     var dist = document.getElementById('district').value;
@@ -917,7 +950,8 @@ function putWMSLayerdist() {
     if(talLayer){
         mymap.removeLayer(talLayer)
     }
-
+    var taluka = document.getElementById('block_s').value;
+    /*
     var dist = document.getElementById('district').value;
     var taluka = document.getElementById('block_s').value;
 
@@ -938,6 +972,31 @@ function putWMSLayerdist() {
     talLayer=wms_layer;
     // console.log(taluka);
 
+*/
+var wms_layer;
+var data = fetchJSON("{% static 'data/talukas.geojson' %}")
+    .then(function(data) { 
+
+    // do what you want to do with `data` here...
+    data.features.forEach(function(feature) {
+        //console.log(feature.properties.Block)
+        if(DistrictSelected!=""){
+            if(feature.properties.Block==taluka && feature.properties.District==DistrictSelected){
+                console.log(feature.geometry)
+                wms_layer = L.geoJson(feature.geometry)
+                wms_layer.addTo(mymap)
+            }
+        }else{
+            if(feature.properties.Block==taluka){
+                console.log(feature.geometry)
+                wms_layer = L.geoJson(feature.geometry)
+                wms_layer.addTo(mymap)
+            }
+        }
+        talLayer=wms_layer;
+    });
+    
+});   
 
 }
 
@@ -1324,6 +1383,8 @@ function plotData(){
 }
 
 function clearAll(){
+
+    DistrictSelected="";
     points.forEach(p=>{
         mymap.removeLayer(p)
     })
