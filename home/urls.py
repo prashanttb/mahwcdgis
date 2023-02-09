@@ -19,6 +19,7 @@ urlpatterns = [
     path('mr/our-team', views.about_op_mr, name='mr/our-team'),
     path('mr/what-we-do', views.about_wwd_mr, name='mr/what-we-do'),
     path('mr/partners', views.about_p_mr, name='mr/partners'),
+    path('wcdmap', views.viewWcdMap,name='viewWcdMap')
     
    
     
